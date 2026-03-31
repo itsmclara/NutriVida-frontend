@@ -1,0 +1,88 @@
+.pacientes-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 30px;
+}
+
+.pacientes-header h1 {
+    margin: 0;
+    font-size: 28px;
+    color: #27272E;
+}
+
+.pacientes-header p {
+  font-size: 16px;
+  color: #6b7280;
+}
+
+.btn-primary {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  background: #DB6A92;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  opacity: 0.7;
+}
+
+.tabela-container {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px 30px;
+
+  box-shadow: 
+        0px 0px 1px rgba(12, 26, 75, 0.24),
+        0px 3px 8px -1px rgba(50, 50, 71, 0.05);
+}
+
+.tabela {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tabela th {
+  text-align: left;
+  font-size: 16px;
+  color: #1F2D3D;
+  padding-bottom: 16px;
+}
+
+.tabela td {
+  padding: 12px 0;
+  font-size: 16px;
+  color: #425466;
+  border-top: 1px solid #eee;
+}
+
+.acoes {
+  display: flex;
+  gap: 20px;
+  cursor: pointer;
+}
+
+.icon-view {
+  color: #4CAFD0; 
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.icon-view:hover {
+  color: #8DEDF7;
+}
+
+.icon-edit {
+  color: #D46A51;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.icon-edit:hover {
+  color: #FAB592;
+}

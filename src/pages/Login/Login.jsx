@@ -1,26 +1,34 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import "./Login.css";
-import logo from "../../assets/logo-vertical.svg"
+import logo from "../../assets/logo-vertical.svg";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [erro, setErro] = useState("");
 
-  function handleLogin() {
-    if (!email.trim() || !senha.trim()) {
-      setErro("Preencha todos os campos");
-      return;
-    }
+  const navigate = useNavigate();
 
-    if (!email.includes("@")) {
-      setErro("E-mail inválido");
-      return;
-    }
-
-    setErro("");
-
+  async function handleLogin() {
+  if (!email.trim() || !senha.trim()) {
+    setErro("Preencha todos os campos");
+    return;
   }
+
+  setErro("");
+
+  const usuarioFake = {
+    nome: "Sarah Duarte",
+    tipo: "SECRETARIA",
+  };
+
+  localStorage.setItem("usuario", JSON.stringify(usuarioFake));
+  localStorage.setItem("token", "fake-token");
+
+  navigate("/dashboard-secretaria");
+}
 
   return (
     <div className="login-container">

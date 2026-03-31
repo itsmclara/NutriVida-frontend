@@ -72,7 +72,7 @@
   padding: 12px;
   border: none;
   border-radius: 8px;
-  background: linear-gradient(to right, #DB6A92, #FFADBA);
+  background: #DB6A92;
   color: #ffffff;
   font-size: 16px;
   font-weight: 600;
@@ -80,7 +80,7 @@
 }
 
 .login-button:hover {
-  opacity: 0.9;
+  opacity: 0.7;
 }
 
 .erro {
