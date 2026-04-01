@@ -1,0 +1,64 @@
+.status-container {
+  position: relative;
+}
+
+.status {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.status.agendada {
+  background: #EBF2FA;
+  color: #8694ad;
+}
+
+.status.confirmada {
+  background: #d1faff;
+  color: #4595B0;
+}
+
+.status.realizada {
+  background: #d8fee9;
+  color: #43a482;
+}
+
+.status.cancelada {
+  background: #f2b5b1;
+  color: #CF4655;
+}
+
+.status.ausente {
+  background: #ffd5c0;
+  color: #D16A52;
+}
+
+.status-dropdown {
+  position: absolute;
+  color: #425466;
+  top: 30px;
+  right: 0;
+
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 8px;
+
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+
+  overflow: hidden;
+  z-index: 10;
+}
+
+.status-item {
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.status-item:hover {
+    color: #DB6A92;
+    background: #fee9f1;
+    transform: translateX(2px);
+}

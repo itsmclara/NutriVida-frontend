@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Login from "./pages/Login/Login";
 import DashboardSecretaria from "./pages/DashboardSecretaria/DashboardSecretaria";
 import DashboardNutri from "./pages/DashboardNutri/DashboardNutri";
+import Agenda from "./pages/Agenda/Agenda";
 import Pacientes from "./pages/Pacientes/Pacientes";
 
 
@@ -28,6 +29,15 @@ function App() {
         element={
           <Layout>
             <DashboardNutri />
+          </Layout>
+        }
+      />
+
+      <Route
+        path="/agenda"
+        element={
+          <Layout>
+            <Agenda />
           </Layout>
         }
       />
