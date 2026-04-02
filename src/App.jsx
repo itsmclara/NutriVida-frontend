@@ -5,7 +5,7 @@ import DashboardSecretaria from "./pages/DashboardSecretaria/DashboardSecretaria
 import DashboardNutri from "./pages/DashboardNutri/DashboardNutri";
 import Agenda from "./pages/Agenda/Agenda";
 import Pacientes from "./pages/Pacientes/Pacientes";
-
+import Usuarios from "./pages/Usuarios/Usuarios";
 
 import Layout from "./components/Layout/Layout";
 
@@ -47,6 +47,15 @@ function App() {
         element={
           <Layout>
             <Pacientes />
+          </Layout>
+        }
+      />
+
+      <Route
+        path="/usuarios"
+        element={
+          <Layout>
+            <Usuarios />
           </Layout>
         }
       />

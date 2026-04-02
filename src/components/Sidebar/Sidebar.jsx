@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { LayoutDashboard, CalendarDays, Users } from "lucide-react";
+import { LayoutDashboard, CalendarDays, Users, Users2 } from "lucide-react";
 import "./Sidebar.css";
 import logo from "../../assets/logo-horizontal.svg";
 
@@ -26,6 +26,11 @@ function Sidebar() {
         <NavLink to="/pacientes" className={({ isActive }) => isActive ? "menu-item active" : "menu-item"}>
         <Users size={20} className="menu-icon"/>
           Pacientes
+        </NavLink>
+
+        <NavLink to="/usuarios" className={({ isActive }) => isActive ? "menu-item active" : "menu-item"}>
+        <Users2 size={20} className="menu-icon"/>
+          Usuarios
         </NavLink>
 
       </nav>
