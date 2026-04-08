@@ -1,32 +1,10 @@
 import { Eye, Pencil } from "lucide-react";
 import "./Pacientes.css";
+import { pacientes } from "../../mocks/dadosFake";
 
 function Pacientes() {
 
-  const pacientes = [
-    {
-      id: "00001",
-      nome: "Lucas Oliveira",
-      idade: 20,
-      genero: "Masculino",
-      contato: "(43) 99123-4567"
-    },
-    {
-      id: "00002",
-      nome: "Carla Santos",
-      idade: 27,
-      genero: "Feminino",
-      contato: "(43) 99123-4567"
-    },
-    {
-      id: "00003",
-      nome: "Pedro Almeida",
-      idade: 31,
-      genero: "Masculino",
-      contato: "(43) 99123-4567"
-    }
-  ];
-
+  
   return (
     <>
 
@@ -61,20 +39,28 @@ function Pacientes() {
           </thead>
 
           <tbody>
-            {pacientes.map((p) => (
-              <tr key={p.id}>
-                <td>{p.id}</td>
-                <td>{p.nome}</td>
-                <td>{p.idade}</td>
-                <td>{p.genero}</td>
-                <td>{p.contato}</td>
+            {pacientes.length > 0 ? (
+              pacientes.map((p) => (
+                <tr key={p.id}>
+                  <td>{p.id}</td>
+                  <td>{p.nome}</td>
+                  <td>{p.idade}</td>
+                  <td>{p.genero}</td>
+                  <td>{p.contato}</td>
 
-                <td className="acoes">
-                  <Eye size={20} className="icon-view"/>
-                  <Pencil size={20} className="icon-edit"/>
+                  <td className="acoes">
+                    <Eye size={20} className="icon-view"/>
+                    <Pencil size={20} className="icon-edit"/>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr className="empty-row">
+                <td colSpan="5" className="empty-message">
+                  Nenhum paciente encontrado
                 </td>
               </tr>
-            ))}
+            )}
           </tbody>
 
         </table>

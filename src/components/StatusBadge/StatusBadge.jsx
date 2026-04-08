@@ -4,7 +4,6 @@ import "./StatusBadge.css";
 function StatusBadge({ statusInicial }) {
 
   const [status, setStatus] = useState(statusInicial);
-
   const [aberto, setAberto] = useState(false);
 
   const opcoes = [
@@ -21,11 +20,17 @@ function StatusBadge({ statusInicial }) {
   }
 
   return (
-    <div className="status-container">
+    <div
+      className="status-container"
+      onClick={(e) => e.stopPropagation()} 
+    >
 
       <span
         className={`status ${status.toLowerCase()}`}
-        onClick={() => setAberto(!aberto)}
+        onClick={(e) => {
+          e.stopPropagation(); 
+          setAberto(!aberto);
+        }}
       >
         {status}
       </span>
@@ -37,7 +42,10 @@ function StatusBadge({ statusInicial }) {
             <div
               key={op}
               className="status-item"
-              onClick={() => trocarStatus(op)}
+              onClick={(e) => {
+                e.stopPropagation();
+                trocarStatus(op);
+              }}
             >
               {op}
             </div>

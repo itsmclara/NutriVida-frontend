@@ -1,8 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 
 import Login from "./pages/Login/Login";
-import DashboardSecretaria from "./pages/DashboardSecretaria/DashboardSecretaria";
-import DashboardNutri from "./pages/DashboardNutri/DashboardNutri";
+import Dashboard from "./pages/Dashboard/Dashboard";
 import Agenda from "./pages/Agenda/Agenda";
 import Pacientes from "./pages/Pacientes/Pacientes";
 import Usuarios from "./pages/Usuarios/Usuarios";
@@ -16,19 +15,10 @@ function App() {
       <Route path="/" element={<Login />} />
 
       <Route
-        path="/dashboard-secretaria"
+        path="/dashboard"
         element={
           <Layout>
-            <DashboardSecretaria />
-          </Layout>
-        }
-      />
-
-      <Route
-        path="/dashboard-nutri"
-        element={
-          <Layout>
-            <DashboardNutri />
+            <Dashboard />
           </Layout>
         }
       />

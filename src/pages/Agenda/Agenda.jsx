@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import ConsultaCard from "../../components/ConsultaCard/ConsultaCard";
 import "./Agenda.css";
+import { consultas } from "../../mocks/dadosFake";
 
 function Agenda() {
 
@@ -16,14 +17,6 @@ function Agenda() {
     "16:00", "16:30", "17:00", "17:30"
   ];
 
-  const consultas = [
-    {
-      data: "2026-04-01",
-      hora: "08:00",
-      nome: "Nome do Paciente",
-      status: "Confirmada"
-    }
-  ];
 
   function proximoDia() {
     const nova = new Date(dataAtual);

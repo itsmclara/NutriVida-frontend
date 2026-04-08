@@ -1,0 +1,80 @@
+.historico-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 16px;
+  grid-column: 2;
+
+  box-shadow:   
+    0px 0px 1px rgba(12, 26, 75, 0.24),
+    0px 3px 8px -1px rgba(50, 50, 71, 0.05);
+
+  grid-column: 1 / -1;
+}
+
+.historico-card.empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #425466;
+  height: 100%;
+}
+
+.card-header {
+  padding-bottom: 16px;
+  border-bottom: 1px solid #eee;
+}
+
+.card-titulo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1F2D3D;
+}
+
+.card-titulo svg {
+  color: #A0AEC0;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.historico-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.historico-item:last-child {
+  border-bottom: none;
+}
+
+.historico-texto {
+  font-size: 16px;
+  color: #425466;
+}
+
+.icon-eye {
+  color: #4CAFD0;
+}
+
+.icon-pdf {
+  color: #CF4655;
+}
+
+.historico-actions {
+  display: flex;
+  cursor: pointer;
+  transition: 0.2s;
+  gap: 16px;
+}
+
+.historico-actions svg:hover {
+  opacity: 0.7;
+}

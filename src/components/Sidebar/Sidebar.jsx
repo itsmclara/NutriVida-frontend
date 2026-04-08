@@ -4,6 +4,9 @@ import "./Sidebar.css";
 import logo from "../../assets/logo-horizontal.svg";
 
 function Sidebar() {
+
+  const usuario = JSON.parse(localStorage.getItem("usuario"));
+
   return (
     <div className="sidebar">
 
@@ -13,25 +16,47 @@ function Sidebar() {
 
       <nav className="sidebar-menu">
 
-        <NavLink to="/dashboard" className={({ isActive }) => isActive ? "menu-item active" : "menu-item"}> 
-        <LayoutDashboard size={20} className="menu-icon"/>
+        <NavLink
+          to="/dashboard"
+          className={({ isActive }) =>
+            isActive ? "menu-item active" : "menu-item"
+          }
+        >
+          <LayoutDashboard size={20} className="menu-icon" />
           Dashboard
         </NavLink>
 
-        <NavLink to="/agenda" className={({ isActive }) => isActive ? "menu-item active" : "menu-item"}>
-        <CalendarDays size={20} className="menu-icon"/>
+        <NavLink
+          to="/agenda"
+          className={({ isActive }) =>
+            isActive ? "menu-item active" : "menu-item"
+          }
+        >
+          <CalendarDays size={20} className="menu-icon" />
           Agenda
         </NavLink>
 
-        <NavLink to="/pacientes" className={({ isActive }) => isActive ? "menu-item active" : "menu-item"}>
-        <Users size={20} className="menu-icon"/>
+        <NavLink
+          to="/pacientes"
+          className={({ isActive }) =>
+            isActive ? "menu-item active" : "menu-item"
+          }
+        >
+          <Users size={20} className="menu-icon" />
           Pacientes
         </NavLink>
 
-        <NavLink to="/usuarios" className={({ isActive }) => isActive ? "menu-item active" : "menu-item"}>
-        <Users2 size={20} className="menu-icon"/>
-          Usuarios
-        </NavLink>
+        {usuario?.tipo?.toUpperCase() === "ADMIN" && (
+          <NavLink
+            to="/usuarios"
+            className={({ isActive }) =>
+              isActive ? "menu-item active" : "menu-item"
+            }
+          >
+            <Users2 size={20} className="menu-icon" />
+            Usuários
+          </NavLink>
+        )}
 
       </nav>
 

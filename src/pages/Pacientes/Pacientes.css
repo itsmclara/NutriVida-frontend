@@ -85,3 +85,18 @@
 .icon-edit:hover {
   color: #FAB592;
 }
+
+.empty-message {
+  text-align: center;
+  padding: 30px;
+  color: #425466;
+  font-size: 16px;
+}
+
+.empty-row {
+  height: 140px;
+}
+
+.empty-row td {
+  border-top: none;
+}

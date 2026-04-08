@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import api from "../../services/api"; 
+
 import "./Login.css";
 import logo from "../../assets/logo-vertical.svg";
 
@@ -17,17 +19,58 @@ function Login() {
     return;
   }
 
+  if (!email.includes("@")) {
+    setErro("E-mail inválido");
+    return;
+  }
+
   setErro("");
 
-  const usuarioFake = {
-    nome: "Sarah Duarte",
-    tipo: "SECRETARIA",
-  };
+  // 🔥 MODO MOCK (sem back)
+  const USAR_MOCK = true;
+  
+  if (USAR_MOCK) {
 
-  localStorage.setItem("usuario", JSON.stringify(usuarioFake));
-  localStorage.setItem("token", "fake-token");
+    const usuarioFake = {
+      nome: "Sarah Duarte",
+      tipo: email.includes("nutri")
+        ? "NUTRICIONISTA"
+        : email.includes("admin")
+        ? "ADMIN"
+        : "SECRETARIA"
+    };
 
-  navigate("/dashboard-secretaria");
+    localStorage.setItem("usuario", JSON.stringify(usuarioFake));
+    localStorage.setItem("token", "fake-token");
+
+    navigate("/dashboard");
+    return;
+  }
+
+  // 🔥 MODO REAL (com back)
+  try {
+    const res = await api.post("/usuario/login", {
+      email,
+      senha,
+    });
+
+
+    localStorage.setItem("token", res.data.token);
+
+    const usuario = {
+      nome: res.data.nome,
+      tipo: res.data.perfil, 
+      email: res.data.email,
+    };
+
+    localStorage.setItem("usuario", JSON.stringify(usuario));
+
+    navigate("/dashboard");
+
+  } catch (err) {
+    console.error(err);
+    setErro("E-mail ou senha inválidos");
+  }
 }
 
   return (

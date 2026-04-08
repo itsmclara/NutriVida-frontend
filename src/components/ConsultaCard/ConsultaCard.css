@@ -35,12 +35,17 @@
 }
 
 .nome {
-  font-weight: 500;
+  font-weight: 600;
+  color: #27272E;
+  font-size: 16px;
 }
 
 .hora-consulta {
-  font-size: 12px;
   color: #6b7280;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
 }
 
 .consulta-actions {
@@ -85,4 +90,12 @@
 
 .menu-item:hover {
   background: #f3f4f6;
+}
+
+.consulta-card.clicavel {
+  cursor: pointer;
+}
+
+.consulta-card.clicavel:hover {
+  background: #f3f3f3;
 }

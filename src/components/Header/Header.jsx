@@ -1,6 +1,9 @@
 import "./Header.css";
 
-function Header({ usuario }) {
+function Header() {
+
+  const usuario = JSON.parse(localStorage.getItem("usuario")) || {};
+
   const iniciais = usuario?.nome
   ?.trim()
   .split(" ")
@@ -31,7 +34,9 @@ function Header({ usuario }) {
             ? "Secretária"
             : usuario?.tipo === "NUTRICIONISTA"
             ? "Nutricionista"
-            : "Tipo"}
+            : usuario?.tipo === "ADMIN"
+            ? "Administrador"
+            : "Usuário"}
           </span>
         </div>
 

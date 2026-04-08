@@ -1,22 +1,9 @@
 import { Eye, Pencil } from "lucide-react";
 import "./Usuarios.css";
+import { usuarios } from "../../mocks/dadosFake";
 
 function Usuarios() {
 
-  const usuarios = [
-    {
-      id: 1,
-      nome: "Ana Souza",
-      email: "ana@email.com",
-      tipo: "Nutricionista"
-    },
-    {
-      id: 2,
-      nome: "Carlos Lima",
-      email: "carlos@email.com",
-      tipo: "Secretária"
-    }
-  ];
 
   return (
     <>
@@ -51,23 +38,31 @@ function Usuarios() {
           </thead>
 
           <tbody>
-            {usuarios.map((u) => (
-              <tr key={u.id}>
-                <td>{u.id}</td>
-                <td>{u.nome}</td>
-                <td>{u.email}</td>
-                <td>
+            {usuarios.length > 0 ? (
+              usuarios.map((u) => (
+                <tr key={u.id}>
+                  <td>{u.id}</td>
+                  <td>{u.nome}</td>
+                  <td>{u.email}</td>
+                  <td>
                     <span className={`tipo ${u.tipo.toLowerCase()}`}>
-                    {u.tipo}
+                      {u.tipo}
                     </span>
-                </td>
+                  </td>
 
-                <td className="acoes">
-                  <Eye size={20} className="icon-view"/>
-                  <Pencil size={20} className="icon-edit"/>
+                  <td className="acoes">
+                    <Eye size={20} className="icon-view"/>
+                    <Pencil size={20} className="icon-edit"/>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr className="empty-row">
+                <td colSpan="5" className="empty-message">
+                  Nenhum usuário encontrado
                 </td>
               </tr>
-            ))}
+            )}
           </tbody>
 
         </table>

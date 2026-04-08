@@ -1,0 +1,111 @@
+.paciente-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 16px;
+  grid-column: 2;
+
+  box-shadow:   
+    0px 0px 1px rgba(12, 26, 75, 0.24),
+    0px 3px 8px -1px rgba(50, 50, 71, 0.05);
+}
+
+.paciente-card.empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #425466;
+  height: 100%;
+}
+
+.card-header {
+  padding-bottom: 16px;
+  border-bottom: 1px solid #eee;
+}
+
+.card-titulo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1F2D3D;
+}
+
+.card-titulo svg {
+  color: #A0AEC0;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.paciente-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.paciente-grid span {
+  font-size: 14px;
+  font-weight: 500;
+  color: #425466;
+}
+
+.paciente-grid strong {
+  display: block;
+  font-size: 16px;
+  font-weight: 400;
+  color: #1F2D3D;
+  margin-top: 2px;
+}
+
+.paciente-section {
+  margin-bottom: 12px;
+}
+
+.paciente-section span {
+  font-size: 14px;
+  font-weight: 500;
+  color: #425466;
+}
+
+.paciente-section p {
+  font-size: 16px;
+  font-weight: 400;
+  color: #1F2D3D;
+  margin-top: 4px;
+}
+
+.paciente-actions {
+  display: flex;
+  gap: 12px;
+  padding-top: 16px;
+  border-top: 1px solid #eee;
+}
+
+.btn-primary {
+  background: #ec4899;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-secondary {
+  background: #f3f4f6;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
