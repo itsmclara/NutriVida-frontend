@@ -1,9 +1,12 @@
+import { useState } from "react";
 import { Eye, Pencil } from "lucide-react";
+import ModalNovoUsuario from "../../components/ModalNovoUsuario/ModalNovoUsuario";
 import "./Usuarios.css";
 import { usuarios } from "../../mocks/dadosFake";
 
 function Usuarios() {
 
+  const [modalAberto, setModalAberto] = useState(false);
 
   return (
     <>
@@ -17,7 +20,10 @@ function Usuarios() {
           </p>
         </div>
 
-        <button className="btn-primary">
+        <button
+          className="btn-primary"
+          onClick={() => setModalAberto(true)}
+        >
           + Novo usuário
         </button>
 
@@ -44,6 +50,7 @@ function Usuarios() {
                   <td>{u.id}</td>
                   <td>{u.nome}</td>
                   <td>{u.email}</td>
+
                   <td>
                     <span className={`tipo ${u.tipo.toLowerCase()}`}>
                       {u.tipo}
@@ -51,8 +58,8 @@ function Usuarios() {
                   </td>
 
                   <td className="acoes">
-                    <Eye size={20} className="icon-view"/>
-                    <Pencil size={20} className="icon-edit"/>
+                    <Eye size={20} className="icon-view" />
+                    <Pencil size={20} className="icon-edit" />
                   </td>
                 </tr>
               ))
@@ -68,6 +75,11 @@ function Usuarios() {
         </table>
 
       </div>
+
+      <ModalNovoUsuario
+        aberto={modalAberto}
+        onClose={() => setModalAberto(false)}
+      />
 
     </>
   );
