@@ -1,9 +1,12 @@
+import { useState } from "react";
 import { Eye, Pencil } from "lucide-react";
 import "./Pacientes.css";
 import { pacientes } from "../../mocks/dadosFake";
+import ModalNovoPaciente from "../../components/ModalNovoPaciente/ModalNovoPaciente"
 
 function Pacientes() {
 
+  const [modalAberto, setModalAberto] = useState(false);
   
   return (
     <>
@@ -17,7 +20,7 @@ function Pacientes() {
           </p>
         </div>
 
-        <button className="btn-primary">
+        <button className="btn-primary" onClick={() => setModalAberto(true)}>
           + Novo paciente
         </button>
 
@@ -66,6 +69,11 @@ function Pacientes() {
         </table>
 
       </div>
+
+      <ModalNovoPaciente
+        aberto={modalAberto}
+        onClose={() => setModalAberto(false)}
+      />
 
     </>
   );

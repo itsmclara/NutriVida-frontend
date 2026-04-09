@@ -6,7 +6,14 @@ import { consultas } from "../../mocks/dadosFake";
 
 function Agenda() {
 
-  const [dataAtual, setDataAtual] = useState(new Date());
+  const hoje = new Date();
+  const dataInicial = new Date(
+    hoje.getFullYear(),
+    hoje.getMonth(),
+    hoje.getDate()
+  );
+
+  const [dataAtual, setDataAtual] = useState(dataInicial);
   const inputRef = useRef(null);
 
   const horarios = [
@@ -17,17 +24,32 @@ function Agenda() {
     "16:00", "16:30", "17:00", "17:30"
   ];
 
+  function formatarDataISO(date) {
+    const ano = date.getFullYear();
+    const mes = String(date.getMonth() + 1).padStart(2, "0");
+    const dia = String(date.getDate()).padStart(2, "0");
+
+    return `${ano}-${mes}-${dia}`;
+  }
 
   function proximoDia() {
     const nova = new Date(dataAtual);
     nova.setDate(nova.getDate() + 1);
-    setDataAtual(nova);
+    setDataAtual(new Date(
+      nova.getFullYear(),
+      nova.getMonth(),
+      nova.getDate()
+    ));
   }
 
   function diaAnterior() {
     const nova = new Date(dataAtual);
     nova.setDate(nova.getDate() - 1);
-    setDataAtual(nova);
+    setDataAtual(new Date(
+      nova.getFullYear(),
+      nova.getMonth(),
+      nova.getDate()
+    ));
   }
 
   const dataFormatada = dataAtual.toLocaleDateString("pt-BR", {
@@ -37,7 +59,7 @@ function Agenda() {
     year: "numeric"
   });
 
-  const dataString = dataAtual.toISOString().split("T")[0];
+  const dataString = formatarDataISO(dataAtual);
 
   return (
     <div className="agenda">
@@ -75,13 +97,13 @@ function Agenda() {
             type="date"
             ref={inputRef}
             style={{
-                position: "absolute",
-                opacity: 0,
-                pointerEvents: "none"
+              position: "absolute",
+              opacity: 0,
+              pointerEvents: "none"
             }}
             onChange={(e) => {
-                const [ano, mes, dia] = e.target.value.split("-");
-                setDataAtual(new Date(ano, mes - 1, dia));
+              const [ano, mes, dia] = e.target.value.split("-");
+              setDataAtual(new Date(ano, mes - 1, dia));
             }}
           />
 
@@ -92,7 +114,9 @@ function Agenda() {
           {horarios.map((hora) => {
 
             const consulta = consultas.find(
-              (c) => c.hora === hora && c.data === dataString
+              (c) =>
+                c.hora === hora &&
+                c.data === dataString
             );
 
             return (

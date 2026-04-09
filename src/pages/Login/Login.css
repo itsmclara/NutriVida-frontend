@@ -53,7 +53,7 @@
     height: 46px;
     padding: 10px;
     margin-top: 5px;
-    border-radius: 6px;
+    border-radius: 8px;
     border: 1px solid #eee;
     box-shadow: 
         0 0 1px rgba(35, 34,71, 0.2),
@@ -62,7 +62,7 @@
 
 .login-field input:focus {
   outline: none;
-  border: 2px solid #DB6A92;
+  border: 1px solid #DB6A92;
 }
 
 .login-button {
