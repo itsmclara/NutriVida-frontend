@@ -34,7 +34,7 @@ function Header() {
             ? "Secretária"
             : usuario?.tipo === "NUTRICIONISTA"
             ? "Nutricionista"
-            : usuario?.tipo === "ADMIN"
+            : usuario?.tipo === "ADMINISTRADOR"
             ? "Administrador"
             : "Usuário"}
           </span>

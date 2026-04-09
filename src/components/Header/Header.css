@@ -2,6 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 20px;
 
   padding: 16px 30px;
   background-color: #fff;
@@ -11,10 +12,11 @@
 
 .header-search {
   font-size: 15px;
-  width: 550px;
+  width: 100%;
+  max-width: 550px;
   height: 46px;
   padding: 16px;
-  border-radius: 6px;
+  border-radius: 8px;
   border: 1px solid #eee;
   box-shadow: 
       0 0 1px rgba(35, 34,71, 0.2),

@@ -33,6 +33,7 @@
   color: #1F2D3D;
   gap: 10px;
   margin-bottom: 20px;
+  position: relative;
 }
 
 .agenda-data span {

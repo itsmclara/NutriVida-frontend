@@ -6,6 +6,9 @@ import ConsultasHoje from "../../components/ConsultasHoje/ConsultasHoje";
 import PacienteResumo from "../../components/PacienteResumo/PacienteResumo";
 import Historico from "../../components/Historico/Historico";
 
+import ModalNovoPaciente from "../../components/ModalNovoPaciente/ModalNovoPaciente";
+import ModalAgendarConsulta from "../../components/ModalAgendarConsulta/ModalAgendarconsulta";
+
 import "./Dashboard.css";
 
 function Dashboard() {
@@ -21,6 +24,9 @@ function Dashboard() {
   });
 
   const [pacienteSelecionado, setPacienteSelecionado] = useState(null);
+
+  const [modalPacienteAberto, setModalPacienteAberto] = useState(false);
+  const [modalConsultaAberto, setModalConsultaAberto] = useState(false);
 
   useEffect(() => {
     if (!usuario) {
@@ -51,8 +57,19 @@ function Dashboard() {
 
         {usuario.tipo === "SECRETARIA" && (
           <div className="dashboard-actions">
-            <button className="btn-primary">+ Novo paciente</button>
-            <button className="btn-primary">+ Agendar consulta</button>
+            <button
+              className="btn-primary"
+              onClick={() => setModalPacienteAberto(true)}
+            >
+              + Novo paciente
+            </button>
+
+            <button
+              className="btn-primary"
+              onClick={() => setModalConsultaAberto(true)}
+            >
+              + Agendar consulta
+            </button>
           </div>
         )}
       </div>
@@ -72,6 +89,17 @@ function Dashboard() {
         )}
 
       </div>
+
+      <ModalNovoPaciente
+        aberto={modalPacienteAberto}
+        onClose={() => setModalPacienteAberto(false)}
+      />
+
+      <ModalAgendarConsulta
+        key={modalConsultaAberto ? "dashboard" : "fechado"}
+        aberto={modalConsultaAberto}
+        onClose={() => setModalConsultaAberto(false)}
+      />
 
     </div>
   );

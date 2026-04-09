@@ -1,20 +1,25 @@
 import { useState, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import ConsultaCard from "../../components/ConsultaCard/ConsultaCard";
+import ModalAgendarConsulta from "../../components/ModalAgendarConsulta/ModalAgendarconsulta";
 import "./Agenda.css";
 import { consultas } from "../../mocks/dadosFake";
 
 function Agenda() {
 
   const hoje = new Date();
-  const dataInicial = new Date(
+  const dataInicialBase = new Date(
     hoje.getFullYear(),
     hoje.getMonth(),
     hoje.getDate()
   );
 
-  const [dataAtual, setDataAtual] = useState(dataInicial);
+  const [dataAtual, setDataAtual] = useState(dataInicialBase);
   const inputRef = useRef(null);
+
+  const [modalAberto, setModalAberto] = useState(false);
+  const [dataSelecionada, setDataSelecionada] = useState("");
+  const [horaSelecionada, setHoraSelecionada] = useState("");
 
   const horarios = [
     "07:00", "07:30", "08:00", "08:30",
@@ -72,7 +77,14 @@ function Agenda() {
           </p>
         </div>
 
-        <button className="btn-primary">
+        <button
+          className="btn-primary"
+          onClick={() => {
+            setDataSelecionada("");
+            setHoraSelecionada("");
+            setModalAberto(true);
+          }}
+        >
           + Agendar consulta
         </button>
       </div>
@@ -127,7 +139,14 @@ function Agenda() {
                 {consulta ? (
                   <ConsultaCard consulta={consulta} />
                 ) : (
-                  <span className="disponivel">
+                  <span
+                    className="disponivel"
+                    onClick={() => {
+                      setDataSelecionada(dataString); 
+                      setHoraSelecionada(hora);       
+                      setModalAberto(true);
+                    }}
+                  >
                     Disponível
                   </span>
                 )}
@@ -139,6 +158,14 @@ function Agenda() {
         </div>
 
       </div>
+
+      <ModalAgendarConsulta
+        key={modalAberto ? dataSelecionada + horaSelecionada : "fechado"}
+        aberto={modalAberto}
+        onClose={() => setModalAberto(false)}
+        dataInicial={dataSelecionada}
+        horaInicial={horaSelecionada}
+      />
 
     </div>
   );

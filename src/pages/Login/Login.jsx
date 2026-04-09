@@ -36,7 +36,7 @@ function Login() {
       tipo: email.includes("nutri")
         ? "NUTRICIONISTA"
         : email.includes("admin")
-        ? "ADMIN"
+        ? "ADMINISTRADOR"
         : "SECRETARIA"
     };
 
