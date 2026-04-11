@@ -1,0 +1,42 @@
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  font-size: 15px;
+  resize: none;
+
+  box-shadow:
+    0 0 1px rgba(35, 34, 71, 0.2),
+    0 1px 2px rgba(35, 34, 71, 0.08);
+}
+
+textarea:focus {
+  outline: none;
+  border-color: #DB6A92;
+
+  box-shadow:
+    0 0 0 2px rgba(219, 106, 146, 0.15);
+}
+
+.input-unit {
+  position: relative;
+}
+
+.input-unit input {
+  padding-right: 40px;
+}
+
+.input-unit span {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999;
+  font-size: 14px;
+}
+
+textarea {
+    font-size: 15px;
+    font-family: Inter, sans-serif;
+}
