@@ -1,12 +1,17 @@
 import { useState } from "react";
 import { Eye, Pencil } from "lucide-react";
 import ModalNovoUsuario from "../../components/ModalNovoUsuario/ModalNovoUsuario";
+import ModalDetalhesUsuario from "../../components/ModalDetalhesUsuario/ModalDetalhesUsuario";
+
 import "./Usuarios.css";
 import { usuarios } from "../../mocks/dadosFake";
 
 function Usuarios() {
 
   const [modalAberto, setModalAberto] = useState(false);
+
+  const [modalDetalhesAberto, setModalDetalhesAberto] = useState(false);
+  const [usuarioSelecionado, setUsuarioSelecionado] = useState(null);
 
   return (
     <>
@@ -58,7 +63,15 @@ function Usuarios() {
                   </td>
 
                   <td className="acoes">
-                    <Eye size={20} className="icon-view" />
+                    <Eye
+                      size={20}
+                      className="icon-view"
+                      onClick={() => {
+                        setUsuarioSelecionado(u);
+                        setModalDetalhesAberto(true);
+                      }}
+                    />
+
                     <Pencil size={20} className="icon-edit" />
                   </td>
                 </tr>
@@ -79,6 +92,12 @@ function Usuarios() {
       <ModalNovoUsuario
         aberto={modalAberto}
         onClose={() => setModalAberto(false)}
+      />
+
+      <ModalDetalhesUsuario
+        aberto={modalDetalhesAberto}
+        onClose={() => setModalDetalhesAberto(false)}
+        usuario={usuarioSelecionado}
       />
 
     </>

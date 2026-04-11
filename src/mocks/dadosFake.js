@@ -3,7 +3,10 @@ export const usuarios = [
     id: 1,
     nome: "Dr. João Martins",
     email: "joao@nutri.com",
-    tipo: "NUTRICIONISTA"
+    telefone: "(43) 91234-5678",
+    tipo: "NUTRICIONISTA",
+    crn: "1235",
+    especialidade: "NutriçãoClínica"
   },
   {
     id: 2,
