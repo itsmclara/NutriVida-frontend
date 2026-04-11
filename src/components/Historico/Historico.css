@@ -37,7 +37,7 @@
   color: #A0AEC0;
 }
 
-.card-body {
+.historico-card-body {
   display: flex;
   flex-direction: column;
   margin: 0;
@@ -80,27 +80,39 @@
   opacity: 0.7;
 }
 
-.modal-pdf {
-  position: fixed;
-  top: 0;
-  left: 0;
+.pdf-container {
   width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.7);
-
+  height: 90vh;
+  position: relative;
   display: flex;
   flex-direction: column;
-  padding: 20px;
-  z-index: 999;
 }
 
-.fechar-pdf {
-  align-self: flex-end;
-  background: white;
+.pdf-viewer {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 12px;
+  flex: 1;
+}
+
+.btn-fechar-pdf {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  background: rgba(255, 255, 255, 0.9);
   border: none;
   font-size: 18px;
   cursor: pointer;
-  padding: 6px 10px;
+
   border-radius: 8px;
-  margin-bottom: 10px;
+  padding: 4px 8px;
+}
+
+.modal-sem-scroll {
+  overflow: hidden !important;
+  max-height: none !important;
+  height: 95vh;
+  display: flex;
 }

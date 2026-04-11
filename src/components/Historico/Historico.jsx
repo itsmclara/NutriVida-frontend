@@ -3,6 +3,7 @@ import { useState } from "react";
 import { PDFViewer } from "@react-pdf/renderer";
 
 import PdfConsulta from "../PdfConsulta/PdfConsulta";
+import Modal from "../Modal/Modal"
 import "./Historico.css";
 
 function Historico({ paciente }) {
@@ -48,7 +49,7 @@ function Historico({ paciente }) {
           </span>
         </div>
 
-        <div className="card-body">
+        <div className="historico-card-body">
 
           {historico.map((item) => (
             <div key={item.id} className="historico-item">
@@ -77,17 +78,17 @@ function Historico({ paciente }) {
 
       </div>
 
-      {abrirPdf && (
-        <div className="modal-pdf">
+      <Modal aberto={abrirPdf} onClose={() => setAbrirPdf(false)} className="modal-sem-scroll">
+        <div className="pdf-container">
 
           <button
-            className="fechar-pdf"
+            className="btn-fechar-pdf"
             onClick={() => setAbrirPdf(false)}
           >
             ✕
           </button>
 
-          <PDFViewer width="100%" height="100%">
+          <PDFViewer className="pdf-viewer">
             <PdfConsulta
               consulta={consultaSelecionada}
               paciente={paciente}
@@ -95,7 +96,8 @@ function Historico({ paciente }) {
           </PDFViewer>
 
         </div>
-      )}
+      </Modal>
+
     </>
   );
 }

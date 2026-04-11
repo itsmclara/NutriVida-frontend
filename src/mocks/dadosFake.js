@@ -21,48 +21,45 @@ export const usuarios = [
 
 export const pacientes = [
   {
-    id: 1,
+    id: "00001",
     nome: "Lucas Oliveira",
     idade: 20,
     genero: "Masculino",
-    contato: "(43) 99123-4567",
-    prontuario: "00001",
-    objetivo: "Emagrecimento",
-    infoClinicas: "Diabetes tipo 2",
-    restricoes: "Intolerância à lactose"
+    cpf: "123.456.789-00",
+    telefone: "(43) 99123-4567",
+    email: "lucasoliveira@email.com",
+    dataNascimento: "18/04/2005",
+    dataCadastro: "09/03/2026",
+
+    endereco: {
+      cep: "86870-000",
+      logradouro: "Avenida Brasil",
+      numero: "123",
+      bairro: "Centro",
+      cidade: "Ivaiporã",
+      uf: "PR"
+    }
   },
+
   {
-    id: 2,
-    nome: "Carla Santos",
+    id: "00002",
+    nome: "Ana Souza",
     idade: 27,
     genero: "Feminino",
-    contato: "(43) 99876-5432",
-    prontuario: "00002",
-    objetivo: "Ganho de massa",
-    infoClinicas: "Nenhuma",
-    restricoes: "Nenhuma"
-  },
-  {
-    id: 3,
-    nome: "Pedro Almeida",
-    idade: 31,
-    genero: "Masculino",
-    contato: "(43) 99111-2222",
-    prontuario: "00003",
-    objetivo: "Reeducação alimentar",
-    infoClinicas: "Hipertensão",
-    restricoes: "Baixo sódio"
-  },
-  {
-    id: 4,
-    nome: "Juliana Costa",
-    idade: 24,
-    genero: "Feminino",
-    contato: "(43) 99222-3333",
-    prontuario: "00004",
-    objetivo: "Emagrecimento",
-    infoClinicas: "Ansiedade",
-    restricoes: "Sem cafeína"
+    cpf: "987.654.321-00",
+    telefone: "(43) 99876-5432",
+    email: "ana@email.com",
+    dataNascimento: "12/08/1998",
+    dataCadastro: "01/04/2026",
+
+    endereco: {
+      cep: "86870-000",
+      logradouro: "Rua Paraná",
+      numero: "45",
+      bairro: "Jardim Alegre",
+      cidade: "Ivaiporã",
+      uf: "PR"
+    }
   }
 ];
 

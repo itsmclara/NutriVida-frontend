@@ -8,9 +8,28 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  margin-left: 250px;
 }
 
 .layout-content {
   padding: 30px;
   flex: 1;
+  margin-top: 80px;
+}
+
+.layout .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250;
+  height: 100vh;
+}
+
+.layout-main .header {
+  position: fixed;
+  top: 0;
+  left: 250px;
+  right: 0;
+  height: 80px;
+  z-index: 1000;
 }

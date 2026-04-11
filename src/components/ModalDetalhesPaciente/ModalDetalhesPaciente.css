@@ -1,0 +1,46 @@
+.detalhes-body {
+  padding: 16px 0;
+}
+
+.detalhes-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.detalhes-grid div {
+  display: flex;
+  flex-direction: column;
+}
+
+.detalhes-grid span {
+  font-size: 14px;
+  font-weight: 500;
+  color: #425466;
+}
+
+.detalhes-grid strong {
+  display: block;
+  font-size: 16px;
+  font-weight: 400;
+  color: #1F2D3D;
+  margin-top: 2px;
+}
+
+.detalhes-section {
+  margin-bottom: 12px;
+}
+
+.detalhes-section span {
+  font-size: 14px;
+  font-weight: 500;
+  color: #425466;
+}
+
+.detalhes-section p {
+  font-size: 16px;
+  font-weight: 400;
+  color: #1F2D3D;
+  margin-top: 4px;
+}
