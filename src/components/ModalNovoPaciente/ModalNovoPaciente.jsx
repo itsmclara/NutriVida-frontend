@@ -2,9 +2,27 @@ import { useState } from "react";
 import { UserPlus } from "lucide-react";
 import Modal from "../Modal/Modal";
 import { buscarCep } from "../../services/viaCep";
+import api from "../../services/api";
 import "./ModalNovoPaciente.css";
 
-function ModalNovoPaciente({ aberto, onClose }) {
+import {
+  formatarCPF,
+  formatarTelefone,
+  formatarData,
+  formatarCEP,
+  formatarDataISO,
+  limparNumeros
+} from "../../utils/formatadores";
+
+import { 
+  validarCPF, 
+  validarData, 
+  validarTelefone, 
+  validarCEP, 
+  validarEmail
+} from "../../utils/validadores";
+
+function ModalNovoPaciente({ aberto, onClose, onPacienteCriado }) {
 
   const [nome, setNome] = useState("");
   const [cpf, setCpf] = useState("");
@@ -17,36 +35,6 @@ function ModalNovoPaciente({ aberto, onClose }) {
   const [logradouro, setLogradouro] = useState("");
   const [numero, setNumero] = useState("");
   const [bairro, setBairro] = useState("");
-  const [cidade, setCidade] = useState("");
-  const [uf, setUf] = useState("");
-
-  function formatarCPF(valor) {
-    return valor
-      .replace(/\D/g, "")
-      .replace(/(\d{3})(\d)/, "$1.$2")
-      .replace(/(\d{3})(\d)/, "$1.$2")
-      .replace(/(\d{3})(\d{1,2})$/, "$1-$2");
-  }
-
-  function formatarTelefone(valor) {
-    return valor
-      .replace(/\D/g, "")
-      .replace(/(\d{2})(\d)/, "($1) $2")
-      .replace(/(\d{5})(\d)/, "$1-$2");
-  }
-
-  function formatarData(valor) {
-    return valor
-      .replace(/\D/g, "")
-      .replace(/(\d{2})(\d)/, "$1/$2")
-      .replace(/(\d{2})(\d)/, "$1/$2");
-  }
-
-  function formatarCEP(valor) {
-    return valor
-      .replace(/\D/g, "")
-      .replace(/(\d{5})(\d)/, "$1-$2");
-  }
 
   function limparFormulario() {
     setNome("");
@@ -59,8 +47,6 @@ function ModalNovoPaciente({ aberto, onClose }) {
     setLogradouro("");
     setNumero("");
     setBairro("");
-    setCidade("");
-    setUf("");
   }
 
   function handleClose() {
@@ -68,27 +54,50 @@ function ModalNovoPaciente({ aberto, onClose }) {
     onClose();
   }
 
-  function handleSalvar() {
-    const novoPaciente = {
-      nome,
-      cpf,
-      dataNascimento,
-      genero,
-      telefone,
-      email,
-      endereco: {
-        cep,
+  async function handleSalvar() {
+    try {
+
+      if (!nome.trin()) return alert("Nome obrigatório");
+
+      if (!validarCPF(cpf)) return alert("CPF inválido");
+
+      if (!validarData(dataNascimento)) return alert("Data de nascimento inválida");
+
+      if (!genero) return alert("Selecione o gênero");
+
+      if (!validarTelefone(telefone)) alert("Telefone inválido");
+
+      if (email && !validarEmail(email)) alert("E-mail inválido");
+
+      if (cep && !validarCEP(cep)) alert("CEP inválido");
+
+      const novoPaciente = {
+        nome,
+        cpf: limparNumeros(cpf),
+        dataNascimento: formatarDataISO(dataNascimento),
+        genero,
+        email,
+        telefone: limparNumeros(telefone),
+
+        cep: limparNumeros(cep),
         logradouro,
-        numero,
         bairro,
-        cidade,
-        uf
-      }
-    };
+        numero: numero ? Number(numero) : null,
+      };
 
-    console.log("PACIENTE:", novoPaciente);
+      console.log("ENVIANDO:", novoPaciente);
 
-    handleClose();
+      await api.post("/paciente", novoPaciente);
+
+      alert("Paciente cadastrado com sucesso");
+
+      onPacienteCriado();
+      handleClose();
+
+    } catch (error) {
+      console.error("Erro ao salvar paciente:", error);
+      alert("Erro ao salvar paciente");
+    }
   }
 
   return (
@@ -182,13 +191,15 @@ function ModalNovoPaciente({ aberto, onClose }) {
               const valor = formatarCEP(e.target.value);
               setCep(valor);
 
-              const data = await buscarCep(valor);
+              const cepLimpo = limparNumeros(valor);
 
-              if (data && !data.erro) {
-                setLogradouro(data.logradouro);
-                setBairro(data.bairro);
-                setCidade(data.localidade);
-                setUf(data.uf)
+              if (cepLimpo.length === 8) {
+                const data = await buscarCep(cepLimpo);
+
+                if (data && !data.erro) {
+                  setLogradouro(data.logradouro);
+                  setBairro(data.bairro);
+                }
               }
             }}
           />
@@ -221,27 +232,6 @@ function ModalNovoPaciente({ aberto, onClose }) {
             value={bairro}
             onChange={(e) => setBairro(e.target.value)}
           />
-        </div>
-
-        <div className="form-row">
-          <div className="form-group">
-            <label>Cidade</label>
-            <input
-              placeholder="Ivaiporã"
-              value={cidade}
-              onChange={(e) => setCidade(e.target.value)}
-            />
-          </div>
-
-          <div className="form-group small">
-            <label>UF</label>
-            <input
-              placeholder="PR"
-              value={uf}
-              maxLength={2}
-              onChange={(e) => setUf(e.target.value)}
-            />
-          </div>
         </div>
 
       </div>

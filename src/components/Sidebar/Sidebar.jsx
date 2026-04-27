@@ -46,7 +46,7 @@ function Sidebar() {
           Pacientes
         </NavLink>
 
-        {usuario?.tipo?.toUpperCase() === "ADMINISTRADOR" && (
+        {usuario?.perfil?.toUpperCase() === "ADMINISTRADOR" && (
           <NavLink
             to="/usuarios"
             className={({ isActive }) =>

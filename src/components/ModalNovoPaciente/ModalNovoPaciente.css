@@ -73,8 +73,8 @@ label {
 }
 
 
-input,
-select {
+.form-group input,
+.form-group select {
   width: 100%;
   padding: 10px;
   height: 44px; 
@@ -97,8 +97,8 @@ select {
 }
 
 
-input:focus,
-select:focus {
+.form-group input:focus,
+.form-group select:focus {
   outline: none;
   border-color: #DB6A92;
 
@@ -107,11 +107,11 @@ select:focus {
 }
 
 
-input::placeholder {
+.form-group input::placeholder {
   color: #aaa;
 }
 
 
-select.placeholder {
+.form-group select.placeholder {
   color: #aaa;
 }

@@ -4,7 +4,7 @@ export const usuarios = [
     nome: "Dr. João Martins",
     email: "joao@nutri.com",
     telefone: "(43) 91234-5678",
-    tipo: "NUTRICIONISTA",
+    perfil: "NUTRICIONISTA",
     crn: "1235",
     especialidade: "NutriçãoClínica"
   },
@@ -12,13 +12,13 @@ export const usuarios = [
     id: 2,
     nome: "Mariana Souza",
     email: "mariana@nutri.com",
-    tipo: "SECRETARIA"
+    perfil: "SECRETARIA"
   },
   {
     id: 3,
     nome: "Carlos Almeida",
     email: "admin@nutri.com",
-    tipo: "ADMIN"
+    perfil: "ADMINISTRADOR"
   }
 ];
 

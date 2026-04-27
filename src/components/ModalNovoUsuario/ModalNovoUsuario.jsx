@@ -1,14 +1,31 @@
 import { useState } from "react";
 import { UserPlus } from "lucide-react";
 import Modal from "../Modal/Modal";
+import api from "../../services/api";
 import "./ModalNovoUsuario.css";
 
-function ModalNovoUsuario({ aberto, onClose }) {
+import {
+  formatarTelefone,
+  limparNumeros
+} from "../../utils/formatadores";
+
+import { 
+  validarTelefone, 
+  validarEmail
+} from "../../utils/validadores";
+
+const PERFIS = {
+    NUTRICIONISTA: 1,
+    SECRETARIA: 2,
+    ADMINISTRADOR:3
+};
+
+function ModalNovoUsuario({ aberto, onClose, onUsuarioCriado }) {
 
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-  const [tipo, setTipo] = useState("");
+  const [perfil, setPerfil] = useState("");
   const [telefone, setTelefone] = useState("");
   const [crn, setCrn] = useState("");
   const [especialidade, setEspecialidade] = useState("");
@@ -17,7 +34,7 @@ function ModalNovoUsuario({ aberto, onClose }) {
     setNome("");
     setEmail("");
     setSenha("");
-    setTipo("");
+    setPerfil("");
     setTelefone("");
     setCrn("");
     setEspecialidade("");
@@ -28,20 +45,46 @@ function ModalNovoUsuario({ aberto, onClose }) {
     onClose();
   }
 
-  function handleSalvar() {
-    const novoUsuario = {
-      nome,
-      email,
-      senha,
-      tipo,
-      telefone,
-      crn: tipo === "NUTRICIONISTA" ? crn : null,
-      especialidade: tipo === "NUTRICIONISTA" ? especialidade : null
-    };
+  async function handleSalvar() {
+    try {
 
-    console.log("USUARIO:", novoUsuario);
+      if (!nome.trim()) return alert("Nome obrigatório");
 
-    handleClose();
+      if (!email.trim()) return alert("E-mail obrigatório");
+
+      if (!validarEmail(email)) return alert("E-mail inválido");
+
+      if (!senha.trim()) return alert("Senha obrigatória");
+
+      if (!perfil) return alert("Selecione o perfil");
+
+      if (!telefone) return alert("Telefone obrigatório");
+
+      if (!validarTelefone(telefone)) return alert("Telefone inválido");
+
+      const novoUsuario = {
+        nome,
+        email,
+        senha,
+        perfilId: PERFIS[perfil],
+        telefone: limparNumeros(telefone),
+        crn: perfil === "NUTRICIONISTA" ? crn : null,
+        especialidade: perfil === "NUTRICIONISTA" ? especialidade : null
+      };
+
+      console.log("ENVIANDO:", novoUsuario);
+
+      await api.post("/usuario", novoUsuario);
+
+      alert("Usuário cadastrado com sucesso");
+      
+      onUsuarioCriado();
+      handleClose();
+
+    } catch (error) {
+      console.error("Erro ao cadastrar usuário:", error);
+      alert("Erro ao cadastrar usuário");
+    }
   }
 
   return (
@@ -88,14 +131,14 @@ function ModalNovoUsuario({ aberto, onClose }) {
 
         <div className="form-row">
           <div className="form-group">
-            <label>Tipo de usuário</label>
+            <label>Perfil de usuário</label>
             <select
-              value={tipo}
-              onChange={(e) => setTipo(e.target.value)}
-              className={!tipo ? "placeholder" : ""}
+              value={perfil}
+              onChange={(e) => setPerfil(e.target.value)}
+              className={!perfil ? "placeholder" : ""}
             >
-              <option value="">Selecione o tipo</option>
-              <option value="ADMIN">Administrador</option>
+              <option value="">Selecione o perfil</option>
+              <option value="ADMINISTRADOR">Administrador</option>
               <option value="SECRETARIA">Secretária</option>
               <option value="NUTRICIONISTA">Nutricionista</option>
             </select>
@@ -106,12 +149,14 @@ function ModalNovoUsuario({ aberto, onClose }) {
             <input
               placeholder="(00) 00000-0000"
               value={telefone}
-              onChange={(e) => setTelefone(e.target.value)}
+              onChange={(e) => 
+                setTelefone(formatarTelefone(e.target.value))
+              }
             />
           </div>
         </div>
 
-        {tipo === "NUTRICIONISTA" && (
+        {perfil === "NUTRICIONISTA" && (
           <>
             <div className="form-group">
               <label>CRN</label>

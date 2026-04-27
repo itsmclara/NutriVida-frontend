@@ -2,7 +2,7 @@ import { User } from "lucide-react";
 import Modal from "../Modal/Modal";
 import "./ModalDetalhesUsuario.css";
 
-function ModalDetalhesUsuario({ aberto, onClose, usuario }) {
+function ModalDetalhesUsuario({ aberto, onClose, usuario, onEditar }) {
 
   if (!usuario) return null;
 
@@ -28,8 +28,8 @@ function ModalDetalhesUsuario({ aberto, onClose, usuario }) {
           </div>
 
           <div>
-            <span>Tipo de usuário</span>
-            <strong>{usuario?.tipo}</strong>
+            <span>Perfil de usuário</span>
+            <strong>{usuario?.perfil}</strong>
           </div>
 
           <div>
@@ -70,7 +70,7 @@ function ModalDetalhesUsuario({ aberto, onClose, usuario }) {
           Fechar
         </button>
 
-        <button className="btn-primary">
+        <button className="btn-primary" onClick={onEditar}>
           Editar usuário
         </button>
       </div>

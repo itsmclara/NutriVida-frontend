@@ -27,13 +27,13 @@ function Login() {
   setErro("");
 
   // 🔥 MODO MOCK (sem back)
-  const USAR_MOCK = true;
+  const USAR_MOCK = false;
   
   if (USAR_MOCK) {
 
     const usuarioFake = {
       nome: "Sarah Duarte",
-      tipo: email.includes("nutri")
+      perfil: email.includes("nutri")
         ? "NUTRICIONISTA"
         : email.includes("admin")
         ? "ADMINISTRADOR"
@@ -59,7 +59,7 @@ function Login() {
 
     const usuario = {
       nome: res.data.nome,
-      tipo: res.data.perfil, 
+      perfil: res.data.perfil, 
       email: res.data.email,
     };
 

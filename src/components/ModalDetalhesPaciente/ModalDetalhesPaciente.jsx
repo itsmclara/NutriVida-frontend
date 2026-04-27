@@ -1,10 +1,26 @@
 import { User } from "lucide-react";
 import Modal from "../Modal/Modal";
 import "./ModalDetalhesPaciente.css";
+import { formatarCPF, formatarTelefone, formatarData} from "../../utils/formatadores";
 
-function ModalDetalhesPaciente({ aberto, onClose, paciente }) {
+function ModalDetalhesPaciente({ aberto, onClose, paciente, onEditar }) {
 
   if (!paciente) return null;
+
+  function montarEndereco(p) {
+    const partes = [
+      p.logradouro,
+      p.numero,
+      p.bairro,
+      p.cidade
+    ];
+
+    const filtrado = partes.filter(
+      (item) => item !== null && item !== undefined && item !== ""
+    );
+
+    return filtrado.length > 0 ? filtrado.join(", ") : "—";
+  }
 
   return (
     <Modal aberto={aberto} onClose={onClose}>
@@ -29,7 +45,7 @@ function ModalDetalhesPaciente({ aberto, onClose, paciente }) {
 
           <div>
             <span>Data de cadastro</span>
-            <strong>{paciente.dataCadastro}</strong>
+            <strong>{formatarData(paciente.dataCadastro) || "—"}</strong>
           </div>
 
           <div>
@@ -39,37 +55,34 @@ function ModalDetalhesPaciente({ aberto, onClose, paciente }) {
 
           <div>
             <span>Gênero</span>
-            <strong>{paciente.genero}</strong>
+            <strong>{paciente.genero || "—"}</strong>
           </div>
 
           <div>
             <span>CPF</span>
-            <strong>{paciente.cpf}</strong>
+            <strong>{formatarCPF(paciente.cpf)}</strong>
           </div>
 
           <div>
             <span>Data de nascimento</span>
-            <strong>{paciente.dataNascimento}</strong>
+            <strong>{formatarData(paciente.dataNascimento) || "—"}</strong>
           </div>
 
           <div>
             <span>Telefone</span>
-            <strong>{paciente.telefone}</strong>
+            <strong>{formatarTelefone(paciente.telefone) || "—"}</strong>
           </div>
 
           <div>
             <span>E-mail</span>
-            <strong>{paciente.email}</strong>
+            <strong>{paciente.email || "—"}</strong>
           </div>
 
         </div>
 
         <div className="detalhes-section">
           <span>Endereço</span>
-          <p>
-            {paciente.endereco?.logradouro}, {paciente.endereco?.numero},{" "}
-            {paciente.endereco?.bairro}, {paciente.endereco?.cidade} - {paciente.endereco?.uf}
-          </p>
+          <p>{montarEndereco(paciente)}</p>
         </div>
 
       </div>
@@ -79,7 +92,7 @@ function ModalDetalhesPaciente({ aberto, onClose, paciente }) {
           Fechar
         </button>
 
-        <button className="btn-primary">
+        <button className="btn-primary" onClick={onEditar}>
           Editar paciente
         </button>
       </div>

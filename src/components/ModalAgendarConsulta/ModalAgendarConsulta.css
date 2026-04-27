@@ -62,7 +62,7 @@ label {
   margin-bottom: 4px;
 }
 
-input {
+.form-group input {
   width: 100%;
   padding: 10px;
   height: 44px; 

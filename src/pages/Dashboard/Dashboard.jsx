@@ -55,7 +55,7 @@ function Dashboard() {
           </p>
         </div>
 
-        {usuario.tipo === "SECRETARIA" && (
+        {usuario.perfil === "SECRETARIA" && (
           <div className="dashboard-actions">
             <button
               className="btn-primary"
@@ -74,14 +74,14 @@ function Dashboard() {
         )}
       </div>
 
-      <div className={`dashboard-grid ${usuario.tipo === "SECRETARIA" ? "full" : ""}`}>
+      <div className={`dashboard-grid ${usuario.perfil === "SECRETARIA" ? "full" : ""}`}>
 
         <ConsultasHoje
           consultas={consultas}
           onSelecionar={selecionarPaciente}
         />
 
-        {usuario.tipo === "NUTRICIONISTA" && (
+        {usuario.perfil === "NUTRICIONISTA" && (
           <>
             <PacienteResumo paciente={pacienteSelecionado} />
             <Historico paciente={pacienteSelecionado} />

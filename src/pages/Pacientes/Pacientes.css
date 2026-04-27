@@ -100,3 +100,7 @@
 .empty-row td {
   border-top: none;
 }
+
+.busca-wrapper {
+  margin-bottom: 30px;
+}

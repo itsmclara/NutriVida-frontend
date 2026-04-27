@@ -16,12 +16,6 @@ function Header() {
   return (
     <div className="header">
 
-      <input
-        type="text"
-        placeholder="Buscar paciente por nome ou CPF"
-        className="header-search"
-      />
-
       <div className="header-user">
 
         <div className="user-info">
@@ -30,11 +24,11 @@ function Header() {
           </span>
 
           <span className="user-role">
-            {usuario?.tipo === "SECRETARIA"
+            {usuario?.perfil === "SECRETARIA"
             ? "Secretária"
-            : usuario?.tipo === "NUTRICIONISTA"
+            : usuario?.perfil === "NUTRICIONISTA"
             ? "Nutricionista"
-            : usuario?.tipo === "ADMINISTRADOR"
+            : usuario?.perfil === "ADMINISTRADOR"
             ? "Administrador"
             : "Usuário"}
           </span>
