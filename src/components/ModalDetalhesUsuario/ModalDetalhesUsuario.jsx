@@ -1,6 +1,8 @@
 import { User } from "lucide-react";
 import Modal from "../Modal/Modal";
 import "./ModalDetalhesUsuario.css";
+import { formatarTelefone } from "../../utils/formatadores";
+import Button from "../Button/Button";
 
 function ModalDetalhesUsuario({ aberto, onClose, usuario, onEditar }) {
 
@@ -44,7 +46,7 @@ function ModalDetalhesUsuario({ aberto, onClose, usuario, onEditar }) {
 
           <div>
             <span>Telefone</span>
-            <strong>{usuario?.telefone}</strong>
+            <strong>{formatarTelefone(usuario?.telefone)}</strong>
           </div>
 
           {usuario?.crn && (
@@ -66,13 +68,16 @@ function ModalDetalhesUsuario({ aberto, onClose, usuario, onEditar }) {
       </div>
 
       <div className="modal-footer">
-        <button className="btn-secondary" onClick={onClose}>
+        <Button
+          variant="secondary"
+          onClick={onClose}
+        >
           Fechar
-        </button>
+        </Button>
 
-        <button className="btn-primary" onClick={onEditar}>
+        <Button onClick={onEditar}>
           Editar usuário
-        </button>
+        </Button>
       </div>
 
     </Modal>

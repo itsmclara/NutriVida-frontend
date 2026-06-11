@@ -6,7 +6,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "URL_DO_BACK",
+        target: "https://tynisha-characterless-nonracially.ngrok-free.dev",
         changeOrigin: true,
         secure: false,
         rewrite: (path) => path.replace(/^\/api/, "")

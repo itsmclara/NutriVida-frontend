@@ -1,11 +1,16 @@
 import { NavLink } from "react-router-dom";
-import { LayoutDashboard, CalendarDays, Users, Users2 } from "lucide-react";
+import { LayoutDashboard, CalendarDays, Users, Users2, LogOut, FileSpreadsheet } from "lucide-react";
 import "./Sidebar.css";
 import logo from "../../assets/logo-horizontal.svg";
 
 function Sidebar() {
 
-  const usuario = JSON.parse(localStorage.getItem("usuario"));
+  const usuario = JSON.parse(sessionStorage.getItem("usuario"));
+
+  function handleLogout() {
+    sessionStorage.removeItem("usuario");
+    window.location.href = "/"
+  }
 
   return (
     <div className="sidebar">
@@ -58,7 +63,24 @@ function Sidebar() {
           </NavLink>
         )}
 
+        <NavLink
+          to="/relatorios"
+          className={({ isActive }) =>
+            isActive ? "menu-item active" : "menu-item"
+          }
+        >
+          <FileSpreadsheet size={20} className="menu-icon" />
+          Relatórios
+        </NavLink>
+
       </nav>
+
+      <div className="sidebar-footer">
+        <button className="logout-btn" onClick={handleLogout}>
+          <LogOut size={20} />
+          Sair
+        </button>
+      </div>
 
     </div>
   );

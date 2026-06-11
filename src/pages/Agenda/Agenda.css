@@ -6,9 +6,9 @@
 }
 
 .agenda-header h1 {
-    margin: 0;
-    font-size: 28px;
-    color: #27272E;
+  margin: 0;
+  font-size: 28px;
+  color: #27272E;
 }
 
 .agenda-header p {
@@ -16,14 +16,28 @@
   color: #6b7280;
 }
 
+.agenda-actions {
+  display: flex;
+  gap: 16px;
+}
+
 .agenda-card {
   background: #fff;
   border-radius: 16px;
   padding: 20px 30px;
+  min-height: 200px;
 
-  box-shadow: 
+  box-shadow:
     0px 0px 1px rgba(12, 26, 75, 0.24),
     0px 3px 8px -1px rgba(50, 50, 71, 0.05);
+}
+
+.agenda-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 20px;
 }
 
 .agenda-data {
@@ -32,13 +46,39 @@
   font-size: 16px;
   color: #1F2D3D;
   gap: 10px;
-  margin-bottom: 20px;
   position: relative;
 }
 
 .agenda-data span {
   cursor: pointer;
   font-weight: 600;
+}
+
+.agenda-status {
+  display: flex;
+  align-items: center;
+}
+
+.agenda-status span {
+  font-size: 14px;
+  font-weight: 700;
+  padding: 8px 14px;
+  border-radius: 999px;
+}
+
+.status-sem-agenda {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+.status-aberta {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.status-finalizada {
+  background: #fee2e2;
+  color: #dc2626;
 }
 
 .btn-seta {
@@ -60,12 +100,13 @@
 }
 
 .btn-seta:hover {
-  background: #f3f4f6;
+  background: #f5f5f5;
+  border-color: #ddd;
 }
 
 .agenda-item {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 20px;
 
   padding: 12px 0;
@@ -80,7 +121,84 @@
 }
 
 .disponivel {
-  color: #425466;
+  color: #22c55e;
   font-size: 14px;
+  font-weight: 600;
   cursor: pointer;
+}
+
+.disponivel:hover {
+  text-decoration: underline;
+}
+
+.sem-agenda {
+  color: #9ca3af;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.sem-agenda:hover {
+  text-decoration: underline;
+}
+
+.agenda-fechada {
+  color: #ef4444;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.agenda-fechada:hover {
+  text-decoration: underline;
+}
+
+.detalhes-paciente {
+  margin-left: 0px;
+  background: #f9fafb;
+  border-radius: 10px;
+  padding: 12px;
+  margin-top: 6px;
+  border: 1px solid #eee;
+}
+
+.detalhes-paciente .detalhes-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.detalhes-paciente span {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.detalhes-paciente strong {
+  font-size: 14px;
+  color: #1F2D3D;
+}
+
+.detalhes-section span {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.detalhes-section p {
+  font-size: 14px;
+  margin-top: 2px;
+}
+
+.empty-message {
+  padding: 40px;
+  text-align: center;
+  color: #6b7280;
+  font-size: 15px;
+}
+
+.agendamentos-hora {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
 }

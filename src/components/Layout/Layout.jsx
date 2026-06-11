@@ -3,7 +3,7 @@ import Header from "../Header/Header";
 import "./Layout.css";
 
 function Layout({ children }) {
-  const usuario = JSON.parse(localStorage.getItem("usuario"));
+  const usuario = JSON.parse(sessionStorage.getItem("usuario"));
 
   return (
     <div className="layout">

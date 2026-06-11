@@ -1,0 +1,24 @@
+@import "../RelatorioConsultas/RelatorioConsultas.css";
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input-group label {
+  font-size: 14px;
+  color: #425466;
+}
+
+.input-group input {
+  height: 46px;
+
+  padding: 0 14px;
+
+  border-radius: 10px;
+  border: 1px solid #dcdfe4;
+
+  font-size: 15px;
+  color: #1F2D3D;
+}

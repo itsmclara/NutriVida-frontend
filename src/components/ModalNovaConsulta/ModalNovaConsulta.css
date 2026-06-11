@@ -1,0 +1,28 @@
+@import "../Form/form.css";
+
+.consulta-paciente-wrapper {
+  display: flex;
+  align-items: flex-end;
+
+  gap: 10px;
+}
+
+.consulta-paciente-wrapper > *:first-child {
+  flex: 1;
+}
+
+.btn-add-paciente {
+  width: 44px;
+  min-width: 44px;
+
+  height: 44px;
+  min-height: 44px;
+
+  padding: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+}

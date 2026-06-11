@@ -1,7 +1,8 @@
 import { User } from "lucide-react";
 import Modal from "../Modal/Modal";
 import "./ModalDetalhesPaciente.css";
-import { formatarCPF, formatarTelefone, formatarData} from "../../utils/formatadores";
+import { formatarCPF, formatarTelefone, formatarData } from "../../utils/formatadores";
+import Button from "../Button/Button";
 
 function ModalDetalhesPaciente({ aberto, onClose, paciente, onEditar }) {
 
@@ -88,13 +89,16 @@ function ModalDetalhesPaciente({ aberto, onClose, paciente, onEditar }) {
       </div>
 
       <div className="modal-footer">
-        <button className="btn-secondary" onClick={onClose}>
+        <Button
+          variant="secondary"
+          onClick={onClose}
+        >
           Fechar
-        </button>
+        </Button>
 
-        <button className="btn-primary" onClick={onEditar}>
+        <Button onClick={onEditar}>
           Editar paciente
-        </button>
+        </Button>
       </div>
 
     </Modal>

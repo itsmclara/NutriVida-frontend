@@ -48,3 +48,49 @@ export function validarEmail(email) {
   const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return regex.test(email);
 }
+
+// 👤 TEXTO OBRIGATÓRIO
+export function validarTextoObrigatorio(
+  texto,
+  minimo = 1
+) {
+  return texto?.trim().length >= minimo;
+}
+
+// 🩺 CRN
+export function validarCRN(crn) {
+
+  if (!crn) return false;
+
+  crn = crn.replace(/\D/g, "");
+
+  return crn.length >= 4;
+}
+
+// ⚖️ PESO
+export function validarPeso(valor) {
+
+  const peso = Number(
+    String(valor).replace(",", ".")
+  );
+
+  return peso > 0 && peso < 500;
+}
+
+// 📏 ALTURA
+export function validarAltura(valor) {
+
+  const altura = Number(
+    String(valor).replace(",", ".")
+  );
+
+  return altura > 0 && altura < 3;
+}
+
+// 🔢 NÚMERO POSITIVO
+export function validarNumeroPositivo(valor) {
+
+  const numero = Number(valor);
+
+  return numero >= 0;
+}

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Eye, Pencil } from "lucide-react";
+import { Eye, Pencil, History, ClipboardList, Plus } from "lucide-react";
 import "./Pacientes.css";
 
 import api from "../../services/api";
@@ -8,55 +8,88 @@ import { formatarTelefone, calcularIdade } from "../../utils/formatadores";
 import ModalNovoPaciente from "../../components/ModalNovoPaciente/ModalNovoPaciente";
 import ModalDetalhesPaciente from "../../components/ModalDetalhesPaciente/ModalDetalhesPaciente";
 import ModalEditarPaciente from "../../components/ModalEditarPaciente/ModalEditarPaciente";
-import BuscaInput from "../../components/BuscaInput/BuscaInput";
+import ModalProntuario from "../../components/ModalProntuario/ModalProntuario";
+import ModalEditarProntuario from "../../components/ModalEditarProntuario/ModaleditarProntuario";
+import ModalHistorico from "../../components/ModalHistorico/ModalHistorico";
+import InputBusca from "../../components/InputBusca/InputBusca";
+import Button from "../../components/Button/Button";
 
 function Pacientes() {
+  const usuario = JSON.parse(sessionStorage.getItem("usuario"));
 
   const [pacientes, setPacientes] = useState([]);
 
   const [modalNovoAberto, setModalNovoAberto] = useState(false);
   const [modalDetalhesAberto, setModalDetalhesAberto] = useState(false);
   const [modalEditarAberto, setModalEditarAberto] = useState(false);
+  const [modalProntuarioAberto, setModalProntuarioAberto] = useState(false);
+  const [modalEditarProntuarioAberto, setModalEditarProntuarioAberto] = useState(false);
+  const [modalHistoricoAberto, setModalHistoricoAberto] = useState(false);
 
   const [pacienteSelecionado, setPacienteSelecionado] = useState(null);
 
+  useEffect(() => {
+    async function carregarInicial() {
+      try {
+        const res = await api.get("/pacientes", {
+          params: { limit: 5 }
+        });
+        setPacientes(Array.isArray(res.data) ? res.data : []);
+      } catch (error) {
+        console.error("Erro ao carregar pacientes:", error);
+      }
+    }
+
+    carregarInicial();
+  }, []);
 
   async function buscarPacientes(termo) {
-  try {
-    let res;
+    try {
+      const params = {};
 
-    if (termo) {
-      res = await api.get(`/paciente?busca=${termo}`);
-    } else {
-      res = await api.get("/paciente/recentes");
-    }
+      if (termo) {
+        params.busca = termo;
+      } else {
+        params.limit = 5;
+      }
 
-    if (Array.isArray(res.data)) {
-      setPacientes(res.data);
-    } else {
-      console.error("Resposta inesperada:", res.data);
-      setPacientes([]);
-    }
+      const res = await api.get("/pacientes", { params });
+
+      if (Array.isArray(res.data)) {
+        setPacientes(res.data);
+      } else {
+        setPacientes([]);
+      }
 
     } catch (error) {
       console.error("Erro ao buscar pacientes:", error);
     }
   }
 
-  useEffect(() => {
-    async function carregarPacientes() {
-      await buscarPacientes();
+  async function atualizarPacienteAtualizado(id) {
+    try {
+      const res = await api.get("/pacientes", {
+        params: { limit: 5 }
+      });
+
+      if (Array.isArray(res.data)) {
+        setPacientes(res.data);
+
+        const atualizado = res.data.find(p => p.id === id);
+
+        if (atualizado) {
+          setPacienteSelecionado(atualizado);
+        }
+      }
+
+    } catch (error) {
+      console.error("Erro ao atualizar paciente:", error);
     }
-
-    carregarPacientes();
-  }, []);
-
+  }
 
   return (
     <>
-
       <div className="pacientes-header">
-
         <div>
           <h1>Pacientes</h1>
           <p>
@@ -64,26 +97,24 @@ function Pacientes() {
           </p>
         </div>
 
-        <button
-          className="btn-primary"
+        <Button
           onClick={() => setModalNovoAberto(true)}
+          icon={<Plus size={18} />}
         >
-          + Novo paciente
-        </button>
-
+          Novo paciente
+        </Button>
       </div>
 
       <div className="busca-wrapper">
-        <BuscaInput
+        <InputBusca
+          label="Buscar"
           placeholder="Buscar paciente por nome ou CPF"
           onBuscar={buscarPacientes}
         />
       </div>
 
       <div className="tabela-container">
-
         <table className="tabela">
-
           <thead>
             <tr>
               <th>ID</th>
@@ -110,41 +141,67 @@ function Pacientes() {
                     <Eye
                       size={20}
                       className="icon-view"
+                      title="Visualizar"
                       onClick={() => {
                         setPacienteSelecionado(p);
                         setModalDetalhesAberto(true);
                       }}
                     />
 
-                    <Pencil
-                      size={20}
-                      className="icon-edit"
-                      onClick={() => {
-                        setPacienteSelecionado(p);
-                        setModalEditarAberto(true);
-                      }}
-                    />
+                    {usuario?.perfil === "SECRETARIA" ? (
+                      <Pencil
+                        size={20}
+                        className="icon-edit"
+                        title="Editar paciente"
+                        onClick={() => {
+                          setPacienteSelecionado(p);
+                          setModalEditarAberto(true);
+                        }}
+                      />
+                    ) : (
+                      <>
+                        <ClipboardList
+                          size={20}
+                          className="icon-prontuario"
+                          title="Prontuário"
+                          onClick={() => {
+                            setPacienteSelecionado(p);
+                            setModalProntuarioAberto(true);
+                          }}
+                        />
+
+                        <History
+                          size={20}
+                          className="icon-historico"
+                          title="Histórico"
+                          onClick={() => {
+                            setPacienteSelecionado(p);
+                            setModalHistoricoAberto(true);
+                          }}
+                        />
+                      </>
+                    )}
 
                   </td>
                 </tr>
               ))
             ) : (
               <tr className="empty-row">
-                <td colSpan="5" className="empty-message">
+                <td colSpan="6" className="empty-message">
                   Nenhum paciente encontrado
                 </td>
               </tr>
             )}
           </tbody>
-
         </table>
-
       </div>
+
+      {/* MODAIS */}
 
       <ModalNovoPaciente
         aberto={modalNovoAberto}
         onClose={() => setModalNovoAberto(false)}
-        onPacienteCriado={buscarPacientes}
+        onPacienteCriado={() => buscarPacientes()}
       />
 
       <ModalDetalhesPaciente
@@ -163,6 +220,29 @@ function Pacientes() {
           setModalEditarAberto(false);
           buscarPacientes();
         }}
+        paciente={pacienteSelecionado}
+      />
+
+      <ModalProntuario
+        aberto={modalProntuarioAberto}
+        onClose={() => setModalProntuarioAberto(false)}
+        paciente={pacienteSelecionado}
+        onEditar={() => {
+          setModalProntuarioAberto(false);
+          setModalEditarProntuarioAberto(true);
+        }}
+      />
+
+      <ModalEditarProntuario
+        aberto={modalEditarProntuarioAberto}
+        onClose={() => setModalEditarProntuarioAberto(false)}
+        onSalvo={() => atualizarPacienteAtualizado(pacienteSelecionado.id)}
+        paciente={pacienteSelecionado}
+      />
+
+      <ModalHistorico
+        aberto={modalHistoricoAberto}
+        onClose={() => setModalHistoricoAberto(false)}
         paciente={pacienteSelecionado}
       />
 

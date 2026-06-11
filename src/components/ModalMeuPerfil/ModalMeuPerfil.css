@@ -1,0 +1,5 @@
+@import "../ModalNovoPaciente/ModalNovoPaciente.css";
+
+.header-user {
+    cursor: pointer;
+}

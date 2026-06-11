@@ -1,151 +1,73 @@
-import { FileText, Eye } from "lucide-react";
 import { useState } from "react";
-import { PDFViewer } from "@react-pdf/renderer";
+import { FileText } from "lucide-react";
 
-import PdfConsulta from "../PdfConsulta/PdfConsulta";
-import Modal from "../Modal/Modal";
-import ModalDetalhesConsulta from "../ModalDetalhesConsulta/ModalDetalhesConsulta";
+import HistoricoLista from "../HistoricoLista/HistoricoLista";
+import ModalConsultasOcultas from "../ModalConsultasOcultas/ModalConsultasOcultas";
 
 import "./Historico.css";
 
-function Historico({ paciente }) {
+function Historico({
+  paciente,
+  historico,
+  onAtualizar
+}) {
 
-  const [abrirPdf, setAbrirPdf] = useState(false);
-  const [consultaSelecionada, setConsultaSelecionada] = useState(null);
-
-  const [modalDetalhesAberto, setModalDetalhesAberto] = useState(false);
+  const [
+    modalOcultasAberto,
+    setModalOcultasAberto
+  ] = useState(false);
 
   if (!paciente) {
+
     return (
       <div className="historico-card empty">
-        <p>Selecione um paciente para visualizar o histórico</p>
+        <p>
+          Selecione um paciente para visualizar o histórico
+        </p>
       </div>
     );
   }
 
-  const historico = [
-    {
-      id: 1,
-      data: "20/04/2026",
-      descricao: "Ajuste de plano alimentar",
-      tipo: "Retorno",
-      resumo: "Ajuste de plano alimentar para rotina de trabalho",
-      peso: 72,
-      altura: 1.68,
-      circAbdominal: 88,
-      circQuadril: 96,
-      imc: 25.5,
-      gorduraCorporal: 22,
-      planoAlimentar: [
-        "Café da manhã: pão integral, ovos mexidos e fruta",
-        "Almoço: arroz integral, frango grelhado, legumes e salada",
-        "Lanche da tarde: iogurte natural com aveia",
-        "Jantar: omelete com salada e legumes"
-      ],
-      observacoes:
-        "Paciente apresentou boa evolução."
-    },
-    {
-      id: 2,
-      data: "06/04/2026",
-      descricao: "Revisão do plano alimentar",
-      tipo: "Retorno",
-      resumo: "Revisão geral da dieta",
-      peso: 73,
-      altura: 1.68,
-      circAbdominal: 89,
-      circQuadril: 97,
-      imc: 25.8,
-      gorduraCorporal: 23,
-      planoAlimentar: [
-        "Manter plano alimentar anterior",
-        "Reduzir consumo de açúcar"
-      ],
-      observacoes:
-        "Manter acompanhamento mensal."
-    }
-  ];
-
   return (
-    <>
-      <div className="historico-card">
+    <div className="historico-card">
 
-        <div className="card-header">
-          <span className="card-titulo">
-            <FileText size={20} />
-            Histórico
-          </span>
-        </div>
+      <div className="card-header">
 
-        <div className="historico-card-body">
+        <span className="card-titulo">
 
-          {historico.map((item) => (
-            <div key={item.id} className="historico-item">
+          <FileText size={20} />
 
-              <span className="historico-texto">
-                {item.data} • {item.descricao}
-              </span>
+          Histórico
 
-              <div className="historico-actions">
+        </span>
 
-                <Eye
-                  size={20}
-                  className="icon-eye"
-                  onClick={() => {
-                    setConsultaSelecionada(item);
-                    setModalDetalhesAberto(true);
-                  }}
-                />
-
-                <FileText
-                  size={20}
-                  className="icon-pdf"
-                  onClick={() => {
-                    setConsultaSelecionada(item);
-                    setAbrirPdf(true);
-                  }}
-                />
-
-              </div>
-
-            </div>
-          ))}
-
-        </div>
+        <button
+          className="btn-ocultas"
+          onClick={() =>
+            setModalOcultasAberto(true)
+          }
+        >
+          Ver ocultas
+        </button>
 
       </div>
 
-      <Modal
-        aberto={abrirPdf}
-        onClose={() => setAbrirPdf(false)}
-        className="modal-sem-scroll"
-      >
-        <div className="pdf-container">
-
-          <button
-            className="btn-fechar-pdf"
-            onClick={() => setAbrirPdf(false)}
-          >
-            ✕
-          </button>
-
-          <PDFViewer className="pdf-viewer">
-            <PdfConsulta
-              consulta={consultaSelecionada}
-              paciente={paciente}
-            />
-          </PDFViewer>
-
-        </div>
-      </Modal>
-
-      <ModalDetalhesConsulta
-        aberto={modalDetalhesAberto}
-        onClose={() => setModalDetalhesAberto(false)}
-        consulta={consultaSelecionada}
+      <HistoricoLista
+        paciente={paciente}
+        historico={historico}
+        onAtualizar={onAtualizar}
       />
 
-    </>
+      <ModalConsultasOcultas
+        aberto={modalOcultasAberto}
+        onClose={() =>
+          setModalOcultasAberto(false)
+        }
+        paciente={paciente}
+        onAtualizar={onAtualizar}
+      />
+
+    </div>
   );
 }
 

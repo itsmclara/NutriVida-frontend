@@ -1,0 +1,15 @@
+.prontuario-section {
+  margin-bottom: 16px;
+}
+
+.prontuario-section span {
+  font-size: 14px;
+  font-weight: 500;
+  color: #425466;
+}
+
+.prontuario-section p {
+  font-size: 16px;
+  color: #1F2D3D;
+  margin-top: 4px;
+}

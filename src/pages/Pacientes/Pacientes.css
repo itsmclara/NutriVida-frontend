@@ -8,27 +8,12 @@
 .pacientes-header h1 {
     margin: 0;
     font-size: 28px;
-    color: #27272E;
+    color: #1F2D3D;
 }
 
 .pacientes-header p {
   font-size: 16px;
   color: #6b7280;
-}
-
-.btn-primary {
-  padding: 12px 20px;
-  border: none;
-  border-radius: 8px;
-  background: #DB6A92;
-  color: #ffffff;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.btn-primary:hover {
-  opacity: 0.7;
 }
 
 .tabela-container {
@@ -102,5 +87,38 @@
 }
 
 .busca-wrapper {
-  margin-bottom: 30px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-end;
+
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+
+  background: #fff;
+
+  box-shadow:
+    0 0 1px rgba(12, 26, 75, 0.24),
+    0 3px 8px -1px rgba(50, 50, 71, 0.05);
+  margin-bottom: 20px;
+}
+
+.icon-prontuario {
+  color: #6CB40C;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.icon-prontuario:hover {
+  color: rgb(192, 255, 90);
+}
+
+.icon-historico {
+  color: #7c3aed;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.icon-historico:hover {
+  color: #af80ff;
 }

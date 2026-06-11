@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Eye, Pencil } from "lucide-react";
+import { Eye, Pencil, Plus } from "lucide-react";
 import "./Usuarios.css";
 
 import api from "../../services/api";
@@ -7,7 +7,9 @@ import api from "../../services/api";
 import ModalNovoUsuario from "../../components/ModalNovoUsuario/ModalNovoUsuario";
 import ModalDetalhesUsuario from "../../components/ModalDetalhesUsuario/ModalDetalhesUsuario";
 import ModalEditarUsuario from "../../components/ModalEditarUsuario/ModalEditarUsuario";
-import BuscaInput from "../../components/BuscaInput/BuscaInput";
+import InputBusca from "../../components/InputBusca/InputBusca";
+import FiltroSelect from "../../components/FiltroSelect/FiltroSelect";
+import Button from "../../components/Button/Button";
 
 function Usuarios() {
 
@@ -16,69 +18,98 @@ function Usuarios() {
   const [modalAberto, setModalAberto] = useState(false);
   const [modalDetalhesAberto, setModalDetalhesAberto] = useState(false);
   const [modalEditarAberto, setModalEditarAberto] = useState(false);
-  
+
   const [usuarioSelecionado, setUsuarioSelecionado] = useState(null);
 
-  async function buscarUsuarios(termo) {
-  try {
-    let res;
+  const [perfil, setPerfil] = useState("");
+  const [status, setStatus] = useState("");
 
-    if (termo) {
-      res = await api.get(`/usuario?busca=${termo}`);
-    } else {
-      res = await api.get("/usuario");
+  useEffect(() => {
+  async function carregarInicial() {
+    try {
+      const res = await api.get("/usuarios", {
+        params: { limit: 5 }
+      });
+      setUsuarios(Array.isArray(res.data) ? res.data : []);
+    } catch (error) {
+      console.error("Erro ao carregar usuários:", error);
     }
+  }
 
-    if (Array.isArray(res.data)) {
-      setUsuarios(res.data);
-    } else {
-      setUsuarios([]);
-    }
+  carregarInicial();
+}, []);
+
+  async function buscarUsuarios(termo, perfilParam = perfil, statusParam = status) {
+    try {
+      const params = {};
+
+      if (termo) {
+        params.busca = termo;
+      } else {
+        params.limit = 5;
+      }
+
+      if (perfilParam) params.perfil = perfilParam;
+      if (statusParam) params.ativo = statusParam === "ATIVO";
+
+      const res = await api.get("/usuarios", { params });
+
+      setUsuarios(Array.isArray(res.data) ? res.data : []);
 
     } catch (error) {
       console.error("Erro ao buscar usuários:", error);
     }
   }
 
-  useEffect(() => {
-      async function carregarUsuarios() {
-        await buscarUsuarios();
-      }
-  
-      carregarUsuarios();
-  }, []);
-
-
   return (
     <>
-
       <div className="usuarios-header">
-
         <div>
-          <h1>Usuarios</h1>
-          <p>
-            Gerencie os usuários do sistema.
-          </p>
+          <h1>Usuários</h1>
+          <p>Gerencie os usuários do sistema.</p>
         </div>
 
-        <button
-          className="btn-primary"
+        <Button
           onClick={() => setModalAberto(true)}
+          icon={<Plus size={18} />}
         >
-          + Novo usuário
-        </button>
-
+          Novo usuário
+        </Button>
       </div>
 
-      <div className="busca-wrapper">
-        <BuscaInput
-          placeholder="Buscar usuário por nome ou perfil"
-          onBuscar={buscarUsuarios}
+      <div className="filtros-container">
+
+        <InputBusca
+          label="Buscar"
+          placeholder="Buscar usuário por nome ou e-mail"
+          onBuscar={(termo) =>
+            buscarUsuarios(termo)
+          }
         />
+
+        <FiltroSelect
+          label="Perfil"
+          valor={perfil}
+          onChange={(valor) => {
+            setPerfil(valor);
+            buscarUsuarios(null, valor, status);
+          }}
+          opcoes={["ADMINISTRADOR", "NUTRICIONISTA", "SECRETARIA"]}
+        />
+
+        <FiltroSelect
+          label="Status"
+          valor={status}
+          onChange={(valor) => {
+            setStatus(valor);
+            buscarUsuarios(null, perfil, valor);
+          }}
+          opcoes={["ATIVO", "INATIVO"]}
+        />
+
       </div>
 
       <div className="tabela-container">
-
         <table className="tabela">
 
           <thead>
@@ -87,6 +118,7 @@ function Usuarios() {
               <th>Nome</th>
               <th>E-mail</th>
               <th>Perfil</th>
+              <th>Status</th>
               <th>Ações</th>
             </tr>
           </thead>
@@ -105,7 +137,14 @@ function Usuarios() {
                     </span>
                   </td>
 
+                  <td>
+                    <span className={`usuario-status ${u.ativo ? "ativo" : "inativo"}`}>
+                      {u.ativo ? "Ativo" : "Inativo"}
+                    </span>
+                  </td>
+
                   <td className="acoes">
+
                     <Eye
                       size={20}
                       className="icon-view"
@@ -115,20 +154,21 @@ function Usuarios() {
                       }}
                     />
 
-                    <Pencil 
-                      size={20} 
+                    <Pencil
+                      size={20}
                       className="icon-edit"
                       onClick={() => {
                         setUsuarioSelecionado(u);
                         setModalEditarAberto(true);
-                      }} 
+                      }}
                     />
+
                   </td>
                 </tr>
               ))
             ) : (
               <tr className="empty-row">
-                <td colSpan="5" className="empty-message">
+                <td colSpan="6" className="empty-message">
                   Nenhum usuário encontrado
                 </td>
               </tr>
@@ -136,13 +176,14 @@ function Usuarios() {
           </tbody>
 
         </table>
-
       </div>
+
+      {/* MODAIS */}
 
       <ModalNovoUsuario
         aberto={modalAberto}
         onClose={() => setModalAberto(false)}
-        onUsuarioCriado={buscarUsuarios}
+        onUsuarioCriado={() => buscarUsuarios()}
       />
 
       <ModalDetalhesUsuario

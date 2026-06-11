@@ -1,42 +1,45 @@
-textarea {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #eee;
-  border-radius: 8px;
-  font-size: 15px;
-  resize: none;
+@import "../Form/form.css";
 
+.consulta-badge {
+  display: inline-flex;
+  align-items: center;
+
+  margin-bottom: 18px;
+
+  padding: 8px 14px;
+
+  border-radius: 12px;
+
+  background: #eef6ff;
+
+  border: 1px solid #cfe2ff;
+
+  color: #2563eb;
+
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.consulta-badge svg {
+  flex-shrink: 0;
+}
+
+.campo-preenchido input,
+.campo-preenchido textarea,
+.campo-preenchido .select-custom-trigger {
+  background: #f5f9ff !important;
+
+  border-color: #cfe2ff !important;
+}
+
+.campo-preenchido input:focus,
+.campo-preenchido textarea:focus,
+.campo-preenchido .select-custom-trigger:focus {
+  border-color: #93c5fd !important;
   box-shadow:
-    0 0 1px rgba(35, 34, 71, 0.2),
-    0 1px 2px rgba(35, 34, 71, 0.08);
+    0 0 0 4px rgba(147, 197, 253, 0.15) !important;
 }
 
-textarea:focus {
-  outline: none;
-  border-color: #DB6A92;
-
-  box-shadow:
-    0 0 0 2px rgba(219, 106, 146, 0.15);
-}
-
-.input-unit {
-  position: relative;
-}
-
-.input-unit input {
-  padding-right: 40px;
-}
-
-.input-unit span {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #999;
-  font-size: 14px;
-}
-
-textarea {
-    font-size: 15px;
-    font-family: Inter, sans-serif;
+.form-row > * {
+  flex: 1;
 }

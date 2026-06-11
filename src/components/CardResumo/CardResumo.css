@@ -1,0 +1,100 @@
+.card-resumo {
+  background: #fff;
+
+  border-radius: 20px;
+
+  padding: 22px;
+
+  border: 1px solid #eef0f3;
+
+  box-shadow:
+    0px 0px 1px rgba(12, 26, 75, 0.24),
+    0px 3px 8px -1px rgba(50, 50, 71, 0.05);
+
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.card-resumo-icone {
+  width: 56px;
+  height: 56px;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+}
+
+.card-resumo-conteudo {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-resumo-titulo {
+  font-size: 15px;
+  color: #6b7280;
+}
+
+.card-resumo-valor {
+  font-size: 30px;
+  line-height: 1.1;
+  color: #1f2d3d;
+}
+
+.card-resumo-descricao {
+  font-size: 14px;
+  color: #9ca3af;
+}
+
+/* AZUL */
+
+.card-azul {
+  background: #e0f2fe;
+  color: #0284c7;
+}
+
+/* VERDE */
+
+.card-verde {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+/* ROXO */
+
+.card-roxo {
+  background: #ede9fe;
+  color: #7c3aed;
+}
+
+/* LARANJA */
+
+.card-laranja {
+  background: #ffedd5;
+  color: #ea580c;
+}
+
+/* ROSA */
+
+.card-rosa {
+  background: #fce7f3;
+  color: #db2777;
+}
+
+/* AMARELO */
+
+.card-amarelo {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+/* VERMELHO */
+
+.card-vermelho {
+  background: #fee2e2;
+  color: #dc2626;
+}

@@ -1,0 +1,40 @@
+.ocultas-loading,
+.ocultas-empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  min-height: 180px;
+
+  color: #425466;
+}
+
+.ocultas-lista {
+  display: flex;
+  flex-direction: column;
+}
+
+.ocultas-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 12px 0;
+
+  border-bottom: 1px solid #eee;
+}
+
+.ocultas-item:last-child {
+  border-bottom: none;
+}
+
+.icon-restaurar {
+  color: #6CB40C;
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.icon-restaurar:hover {
+  color: #8DEDF7;
+}

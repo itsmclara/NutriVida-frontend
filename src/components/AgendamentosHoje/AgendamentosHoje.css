@@ -1,0 +1,60 @@
+.agendamentos-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 16px;
+
+  box-shadow: 
+    0px 0px 1px rgba(12, 26, 75, 0.24),
+    0px 3px 8px -1px rgba(50, 50, 71, 0.05);
+
+  display: flex;
+  flex-direction: column;
+
+  height: 420px;
+}
+
+.card-header {
+  padding-bottom: 16px;
+  border-bottom: 1px solid #eee;
+}
+
+.card-titulo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1F2D3D;
+}
+
+.card-titulo svg {
+  color: #A0AEC0;
+}
+
+.card-body {
+  margin-top: 12px;
+  min-height: 0;
+  padding: 4px;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow-y: auto;
+  flex: 1;
+}
+
+.agendamentos-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.empty-agendamentos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 300px;
+
+  color: #425466;
+}

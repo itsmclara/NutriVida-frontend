@@ -10,11 +10,11 @@ export const styles = StyleSheet.create({
   },
 
   watermark: {
-  position: "absolute",
-  top: "35%",
-  left: "15%",
-  width: 420,
-  opacity: 0.16,
+    position: "absolute",
+    top: "35%",
+    left: "15%",
+    width: 420,
+    opacity: 0.16,
   },
 
   header: {
@@ -81,21 +81,21 @@ export const styles = StyleSheet.create({
   },
 
   footer: {
-  position: "absolute",
-  bottom: 0,
-  left: 0,
-  right: 0,
-  height: 35,
-  backgroundColor: "#E97CA5",
-  display: "flex",
-  flexDirection: "row",
-  alignItems: "center",
-  justifyContent: "space-around",
-  paddingHorizontal: 20,
-},
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: 35,
+    backgroundColor: "#E97CA5",
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-around",
+    paddingHorizontal: 20,
+  },
 
-footerText: {
-  fontSize: 10,
-  color: "#FFFFFF"
-}
+  footerText: {
+    fontSize: 10,
+    color: "#FFFFFF"
+  }
 });

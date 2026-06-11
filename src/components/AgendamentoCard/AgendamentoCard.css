@@ -1,0 +1,117 @@
+.agendamento-card {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 16px;
+
+  background: #fff;
+  padding: 16px 20px;
+  border-radius: 12px;
+
+  box-shadow: 
+    0px 0px 1px rgba(12, 26, 75, 0.24),
+    0px 3px 8px -1px rgba(50, 50, 71, 0.05);
+
+  transition: 0.2s;
+}
+
+/* avatar */
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+
+  background: #6bc000;
+  color: #fff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+/* info */
+.agendamento-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.nome {
+  font-weight: 600;
+  color: #27272E;
+  font-size: 16px;
+}
+
+/* nome da nutri (novo) */
+.sub-info {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* hora */
+.hora-agendamento {
+  color: #6b7280;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+}
+
+/* seta */
+.seta-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.seta-icon {
+  color: #6b7280;
+  transition: 0.2s;
+}
+
+/* hover */
+.agendamento-card.clicavel {
+  cursor: pointer;
+}
+
+.agendamento-card.clicavel:hover {
+  background: #f5f5f5;
+}
+
+.agendamento-card.clicavel:hover .seta-icon {
+  color: #DB6A92;
+  transform: translateX(3px);
+}
+
+.sub-info {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.agendamento-card.cancelado {
+  opacity: 0.6;
+}
+
+.agendamento-card.cancelado .avatar {
+  background: #9ca3af;
+}
+
+.agendamento-card.cancelado {
+  opacity: 0.6;
+
+  background: #f5f5f5;
+
+  border-left: 4px solid #9ca3af;
+}
+
+.agendamento-card.selecionado {
+  border: 2px solid #DB6A92;
+  background: #FFF5F8;
+}
+
+.agendamento-card.cancelado.selecionado {
+  border: 2px solid #DB6A92;
+  background: #FFF5F8;
+}

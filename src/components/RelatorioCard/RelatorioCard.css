@@ -1,0 +1,59 @@
+.relatorio-card {
+  border: 1px solid #eee;
+  border-radius: 16px;
+
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 18px;
+
+  transition: 0.2s ease;
+
+  background: #fff;
+}
+
+.relatorio-card:hover {
+  border-color: #DB6A92;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0px 6px 16px rgba(0, 0, 0, 0.06);
+}
+
+.relatorio-icon {
+  width: 48px;
+  height: 48px;
+
+  border-radius: 12px;
+
+  background: #f1fde1;
+
+  color: #6CB40C;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.relatorio-content {
+  flex: 1;
+}
+
+.relatorio-content h3 {
+  margin: 0 0 8px;
+
+  font-size: 18px;
+  color: #27272E;
+}
+
+.relatorio-content p {
+  margin: 0;
+
+  font-size: 14px;
+  line-height: 1.5;
+
+  color: #6b7280;
+}
