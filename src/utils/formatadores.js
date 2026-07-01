@@ -62,6 +62,24 @@ export function formatarData(data) {
     .replace(/(\d{2})(\d)/, "$1/$2");
 }
 
+export function formatarDataAtual() {
+
+  const hoje = new Date();
+
+  const dia = String(
+    hoje.getDate()
+  ).padStart(2, "0");
+
+  const mes = String(
+    hoje.getMonth() + 1
+  ).padStart(2, "0");
+
+  const ano = hoje.getFullYear();
+
+  return `${dia}/${mes}/${ano}`;
+
+}
+
 // 📅 DATA → ISO (pro back)
 export function formatarDataISO(data) {
   if (!data) return null;
@@ -90,7 +108,7 @@ export function formatarTexto(texto) {
   return texto
     .toLowerCase()
     .replace(/_/g, " ")
-    .replace(/\b\w/g, (c) => c.toUpperCase());
+    .replace(/(^|\s)\S/g, letra => letra.toUpperCase());
 }
 
 export function criarDataLocal(dataString) {

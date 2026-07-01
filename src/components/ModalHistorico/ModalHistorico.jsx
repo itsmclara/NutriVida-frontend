@@ -103,19 +103,23 @@ function ModalHistorico({
         </div>
 
         <button
+          className="close-btn"
+          onClick={onClose}
+        >
+          ×
+        </button>
+
+      </div>
+
+      <div className="historico-acoes">
+
+        <button
           className="btn-ocultas"
           onClick={() =>
             setModalOcultasAberto(true)
           }
         >
-          Ver ocultas
-        </button>
-
-        <button
-          className="close-btn"
-          onClick={onClose}
-        >
-          ×
+          Ver consultas ocultas
         </button>
 
       </div>

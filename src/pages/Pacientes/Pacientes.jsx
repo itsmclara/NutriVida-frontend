@@ -9,7 +9,7 @@ import ModalNovoPaciente from "../../components/ModalNovoPaciente/ModalNovoPacie
 import ModalDetalhesPaciente from "../../components/ModalDetalhesPaciente/ModalDetalhesPaciente";
 import ModalEditarPaciente from "../../components/ModalEditarPaciente/ModalEditarPaciente";
 import ModalProntuario from "../../components/ModalProntuario/ModalProntuario";
-import ModalEditarProntuario from "../../components/ModalEditarProntuario/ModaleditarProntuario";
+import ModalEditarProntuario from "../../components/ModalEditarProntuario/ModalEditarProntuario";
 import ModalHistorico from "../../components/ModalHistorico/ModalHistorico";
 import InputBusca from "../../components/InputBusca/InputBusca";
 import Button from "../../components/Button/Button";
@@ -18,6 +18,7 @@ function Pacientes() {
   const usuario = JSON.parse(sessionStorage.getItem("usuario"));
 
   const [pacientes, setPacientes] = useState([]);
+  const [busca, setBusca] = useState("");
 
   const [modalNovoAberto, setModalNovoAberto] = useState(false);
   const [modalDetalhesAberto, setModalDetalhesAberto] = useState(false);
@@ -68,8 +69,16 @@ function Pacientes() {
 
   async function atualizarPacienteAtualizado(id) {
     try {
+      const params = {};
+
+      if (busca) {
+        params.busca = busca;
+      } else {
+        params.limit = 5;
+      }
+
       const res = await api.get("/pacientes", {
-        params: { limit: 5 }
+        params
       });
 
       if (Array.isArray(res.data)) {
@@ -109,7 +118,10 @@ function Pacientes() {
         <InputBusca
           label="Buscar"
           placeholder="Buscar paciente por nome ou CPF"
-          onBuscar={buscarPacientes}
+          onBuscar={(termo) => {
+            setBusca(termo);
+            buscarPacientes(termo);
+          }}
         />
       </div>
 
@@ -201,7 +213,15 @@ function Pacientes() {
       <ModalNovoPaciente
         aberto={modalNovoAberto}
         onClose={() => setModalNovoAberto(false)}
-        onPacienteCriado={() => buscarPacientes()}
+        onPacienteCriado={() => {
+
+          if (busca) {
+            buscarPacientes(busca);
+          } else {
+            buscarPacientes();
+          }
+
+        }}
       />
 
       <ModalDetalhesPaciente
@@ -218,7 +238,12 @@ function Pacientes() {
         aberto={modalEditarAberto}
         onClose={() => {
           setModalEditarAberto(false);
-          buscarPacientes();
+
+          if (busca) {
+            buscarPacientes(busca);
+          } else {
+            buscarPacientes();
+          }
         }}
         paciente={pacienteSelecionado}
       />

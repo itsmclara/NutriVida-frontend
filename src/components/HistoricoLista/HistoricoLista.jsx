@@ -61,7 +61,15 @@ function HistoricoLista({
 
             console.error(error);
 
-            toast.erro("Erro ao carregar detalhes");
+            toast.erro(
+
+                error?.response?.data?.message ||
+
+                error?.response?.data ||
+
+                "Erro ao carregar detalhes"
+
+            );
         }
     }
 
@@ -89,7 +97,13 @@ function HistoricoLista({
             console.error(error);
 
             toast.erro(
+
+                error?.response?.data?.message ||
+
+                error?.response?.data ||
+
                 "Erro ao ocultar consulta"
+
             );
         }
     }
@@ -159,7 +173,13 @@ function HistoricoLista({
                                         console.error(error);
 
                                         toast.erro(
+
+                                            error?.response?.data?.message ||
+
+                                            error?.response?.data ||
+
                                             "Erro ao carregar PDF"
+
                                         );
                                     }
                                 }}
@@ -221,6 +241,13 @@ function HistoricoLista({
                     setModalDetalhesAberto(false)
                 }
                 consulta={consultaSelecionada}
+                onGerarPdf={() => {
+
+                    setModalDetalhesAberto(false);
+
+                    setAbrirPdf(true);
+
+                }}
             />
 
             <ConfirmModal

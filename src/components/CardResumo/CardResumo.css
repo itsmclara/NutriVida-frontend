@@ -1,42 +1,41 @@
 .card-resumo {
   background: #fff;
-
   border-radius: 20px;
-
   padding: 22px;
-
   border: 1px solid #eef0f3;
-
   box-shadow:
     0px 0px 1px rgba(12, 26, 75, 0.24),
     0px 3px 8px -1px rgba(50, 50, 71, 0.05);
-
   display: flex;
   align-items: center;
   gap: 18px;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .card-resumo-icone {
   width: 56px;
   height: 56px;
-
   border-radius: 50%;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   flex-shrink: 0;
 }
 
 .card-resumo-conteudo {
   display: flex;
   flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .card-resumo-titulo {
   font-size: 15px;
   color: #6b7280;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .card-resumo-valor {
@@ -48,53 +47,73 @@
 .card-resumo-descricao {
   font-size: 14px;
   color: #9ca3af;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* AZUL */
-
-.card-azul {
-  background: #e0f2fe;
-  color: #0284c7;
-}
-
+.card-azul { background: #e0f2fe; color: #0284c7; }
 /* VERDE */
-
-.card-verde {
-  background: #dcfce7;
-  color: #16a34a;
-}
-
+.card-verde { background: #dcfce7; color: #16a34a; }
 /* ROXO */
-
-.card-roxo {
-  background: #ede9fe;
-  color: #7c3aed;
-}
-
+.card-roxo { background: #ede9fe; color: #7c3aed; }
 /* LARANJA */
-
-.card-laranja {
-  background: #ffedd5;
-  color: #ea580c;
-}
-
+.card-laranja { background: #ffedd5; color: #ea580c; }
 /* ROSA */
-
-.card-rosa {
-  background: #fce7f3;
-  color: #db2777;
-}
-
+.card-rosa { background: #fce7f3; color: #db2777; }
 /* AMARELO */
+.card-amarelo { background: #fef3c7; color: #d97706; }
+/* VERMELHO */
+.card-vermelho { background: #fee2e2; color: #dc2626; }
 
-.card-amarelo {
-  background: #fef3c7;
-  color: #d97706;
+/* TABLET */
+@media (max-width: 1024px) {
+  .card-resumo {
+    padding: 18px;
+    gap: 14px;
+  }
+
+  .card-resumo-icone {
+    width: 48px;
+    height: 48px;
+  }
+
+  .card-resumo-valor {
+    font-size: 26px;
+  }
+
+  .card-resumo-titulo {
+    font-size: 14px;
+  }
 }
 
-/* VERMELHO */
+/* CELULAR */
+@media (max-width: 640px) {
+  .card-resumo {
+    padding: 16px;
+    gap: 12px;
+    border-radius: 16px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
-.card-vermelho {
-  background: #fee2e2;
-  color: #dc2626;
+  .card-resumo-icone {
+    width: 40px;
+    height: 40px;
+  }
+
+  .card-resumo-icone svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .card-resumo-valor {
+    font-size: 28px;
+  }
+
+  .card-resumo-titulo {
+    font-size: 13px;
+    white-space: normal;
+  }
 }

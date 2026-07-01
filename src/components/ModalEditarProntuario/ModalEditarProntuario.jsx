@@ -77,7 +77,13 @@ function ModalEditarProntuario({
       console.error(error);
 
       toast.erro(
+
+        error?.response?.data?.message ||
+
+        error?.response?.data ||
+
         "Erro ao atualizar prontuário"
+
       );
     }
   }

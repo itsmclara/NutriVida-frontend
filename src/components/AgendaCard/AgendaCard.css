@@ -2,43 +2,62 @@
   display: flex;
   align-items: center;
   gap: 16px;
-
   padding: 14px 18px;
   border-radius: 12px;
   background: #fff;
-
-  box-shadow: 
+  box-shadow:
     0px 0px 1px rgba(12, 26, 75, 0.24),
     0px 3px 8px -1px rgba(50, 50, 71, 0.05);
-
   cursor: pointer;
   transition: 0.2s;
+  min-width: 0;
 }
 
 .agenda-card-item:hover {
   background: #fdf2f7;
 }
 
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #6CB40C;
+  color: #fff;
+  font-weight: bold;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
 .agenda-info {
   display: flex;
   flex-direction: column;
   flex: 1;
+  min-width: 0;
 }
 
 .data {
   font-weight: 600;
   color: #27272E;
+  white-space: nowrap;
 }
 
 .nutri {
   font-size: 14px;
   color: #6b7280;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .status {
   padding: 4px 10px;
   border-radius: 999px;
   font-size: 13px;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .status.aberta {

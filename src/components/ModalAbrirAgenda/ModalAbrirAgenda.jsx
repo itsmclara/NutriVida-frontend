@@ -136,7 +136,13 @@ function ModalAbrirAgenda({
       );
 
       toast.erro(
+
+        error?.response?.data?.message ||
+
+        error?.response?.data ||
+
         "Erro ao abrir agenda"
+
       );
     }
   }

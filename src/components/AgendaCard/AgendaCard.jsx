@@ -1,5 +1,5 @@
 import "./AgendaCard.css";
-import { formatarNomeNutri } from "../../utils/formatadores";
+import { formatarNomeNutri, formatarData, formatarTexto } from "../../utils/formatadores";
 
 function AgendaCard({ agenda, onClick }) {
 
@@ -21,7 +21,7 @@ function AgendaCard({ agenda, onClick }) {
 
       <div className="agenda-info">
         <span className="data">
-          {agenda.data}
+          {formatarData(agenda.data)}
         </span>
 
         <span className="nutri">
@@ -30,7 +30,7 @@ function AgendaCard({ agenda, onClick }) {
       </div>
 
       <span className={`status ${agenda.status.toLowerCase()}`}>
-        {agenda.status}
+        {formatarTexto(agenda.status)}
       </span>
 
     </div>

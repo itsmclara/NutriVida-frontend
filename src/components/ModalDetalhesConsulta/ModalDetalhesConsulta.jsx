@@ -7,7 +7,7 @@ import {
 } from "../../utils/formatadores";
 import Button from "../Button/Button";
 
-function ModalDetalhesConsulta({ aberto, onClose, consulta }) {
+function ModalDetalhesConsulta({ aberto, onClose, consulta, onGerarPdf }) {
 
   if (!consulta) return null;
 
@@ -91,7 +91,9 @@ function ModalDetalhesConsulta({ aberto, onClose, consulta }) {
           Fechar
         </Button>
 
-        <Button>
+        <Button
+          onClick={onGerarPdf}
+        >
           Gerar PDF
         </Button>
       </div>

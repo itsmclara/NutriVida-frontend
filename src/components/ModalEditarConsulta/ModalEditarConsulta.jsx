@@ -89,7 +89,13 @@ function ModalEditarConsulta({
         console.error(error);
 
         toast.erro(
+
+          error?.response?.data?.message ||
+
+          error?.response?.data ||
+
           "Erro ao carregar consulta"
+
         );
       }
     }
@@ -248,8 +254,13 @@ function ModalEditarConsulta({
       console.error(error);
 
       toast.erro(
+
         error?.response?.data?.message ||
+
+        error?.response?.data ||
+
         "Erro ao atualizar consulta"
+
       );
     }
   }

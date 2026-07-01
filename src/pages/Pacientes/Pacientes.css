@@ -122,3 +122,39 @@
 .icon-historico:hover {
   color: #af80ff;
 }
+
+@media (max-width: 1024px) {
+  .pacientes-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .pacientes-header h1 {
+    font-size: 22px;
+  }
+
+  .pacientes-header p {
+    font-size: 14px;
+  }
+
+  .tabela-container {
+    overflow-x: auto;
+    padding: 16px;
+  }
+
+  .tabela {
+    min-width: 550px;
+  }
+}
+
+@media (max-width: 640px) {
+  .busca-wrapper {
+    flex-direction: column;
+    padding: 16px;
+  }
+
+  .pacientes-header button {
+    align-self: flex-start;
+  }
+}

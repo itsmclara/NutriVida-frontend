@@ -177,6 +177,16 @@ function ModalNovaConsulta({
           "Erro ao buscar nutricionistas:",
           error
         );
+
+        toast.erro(
+
+          error?.response?.data?.message ||
+
+          error?.response?.data ||
+
+          "Erro ao buscar nutricionistas"
+
+        );
       }
     }
 
@@ -276,8 +286,13 @@ function ModalNovaConsulta({
       console.error(error);
 
       toast.erro(
+
         error?.response?.data?.message ||
+
+        error?.response?.data ||
+
         "Erro ao agendar consulta"
+
       );
 
     } finally {
@@ -409,7 +424,10 @@ function ModalNovaConsulta({
 
         error?.response?.data?.message ||
 
+        error?.response?.data ||
+
         "Erro ao agendar consulta"
+
       );
 
     } finally {
@@ -539,7 +557,7 @@ function ModalNovaConsulta({
               }}
               renderItem={(paciente) => (
 
-                <>
+                <div className="autocomplete-info">
 
                   <strong>
                     {paciente.nome}
@@ -553,7 +571,7 @@ function ModalNovaConsulta({
                     )}
                   </span>
 
-                </>
+                </div>
 
               )}
             />

@@ -13,7 +13,7 @@ import Relatorios from "./pages/Relatorios/Relatorios";
 
 import RelatorioPacientes from "./pages/RelatorioPacientes/RelatorioPacientes";
 import RelatorioConsultas from "./pages/RelatorioConsultas/RelatorioConsultas";
-import RelatorioAgendaDia from "./pages/RelatorioAgendaDia/RelatorioAgendaDia";
+import RelatorioAgenda from "./pages/RelatorioAgenda/RelatorioAgenda";
 import RelatorioUsuarios from "./pages/RelatorioUsuarios/RelatorioUsuarios";
 
 import Layout from "./components/Layout/Layout";
@@ -134,10 +134,10 @@ function App() {
         />
 
         <Route
-          path="/relatorios/agenda-dia"
+          path="/relatorios/agenda"
           element={
             <Layout>
-              <RelatorioAgendaDia />
+              <RelatorioAgenda />
             </Layout>
           }
         />

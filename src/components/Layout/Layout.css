@@ -1,5 +1,7 @@
 .layout {
   display: flex;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
 .layout-main {
@@ -9,19 +11,24 @@
   flex-direction: column;
   min-height: 100vh;
   margin-left: 250px;
+  min-width: 0;
+  overflow-x: hidden;
+  width: calc(100% - 250px);
 }
 
 .layout-content {
   padding: 30px;
   flex: 1;
   margin-top: 80px;
+  min-width: 0;
+  overflow-x: hidden;
 }
 
 .layout .sidebar {
   position: fixed;
   top: 0;
   left: 0;
-  width: 250;
+  width: 250px;
   height: 100vh;
 }
 
@@ -32,4 +39,53 @@
   right: 0;
   height: 80px;
   z-index: 1000;
+}
+
+.sidebar-overlay {
+  display: none;
+}
+
+/* TABLET E CELULAR */
+@media (max-width: 1024px) {
+  .layout-main {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .layout-main .header {
+    left: 0;
+  }
+
+  .layout .sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 1500;
+  }
+
+  .layout .sidebar.aberta {
+    transform: translateX(0);
+  }
+
+  .sidebar-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1400;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .sidebar-overlay.visivel {
+    opacity: 1;
+    pointer-events: all;
+  }
+}
+
+/* CELULAR */
+@media (max-width: 640px) {
+  .layout-content {
+    padding: 20px 16px;
+  }
 }

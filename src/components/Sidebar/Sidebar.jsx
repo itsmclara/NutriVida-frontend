@@ -1,22 +1,28 @@
 import { NavLink } from "react-router-dom";
-import { LayoutDashboard, CalendarDays, Users, Users2, LogOut, FileSpreadsheet } from "lucide-react";
+import { LayoutDashboard, CalendarDays, Users, Users2, LogOut, FileSpreadsheet, X } from "lucide-react";
 import "./Sidebar.css";
 import logo from "../../assets/logo-horizontal.svg";
 
-function Sidebar() {
+function Sidebar({ aberta, onFechar }) {
 
   const usuario = JSON.parse(sessionStorage.getItem("usuario"));
 
   function handleLogout() {
     sessionStorage.removeItem("usuario");
-    window.location.href = "/"
+    window.location.href = "/";
   }
 
   return (
-    <div className="sidebar">
+    <div className={`sidebar ${aberta ? "aberta" : ""}`}>
 
-      <div className="sidebar-logo">
-        <img src={logo} alt="Logo" />
+      <div className="sidebar-topo">
+        <div className="sidebar-logo">
+          <img src={logo} alt="Logo" />
+        </div>
+
+        <button className="sidebar-fechar" onClick={onFechar}>
+          <X size={20} />
+        </button>
       </div>
 
       <nav className="sidebar-menu">
@@ -26,6 +32,7 @@ function Sidebar() {
           className={({ isActive }) =>
             isActive ? "menu-item active" : "menu-item"
           }
+          onClick={onFechar}
         >
           <LayoutDashboard size={20} className="menu-icon" />
           Dashboard
@@ -36,6 +43,7 @@ function Sidebar() {
           className={({ isActive }) =>
             isActive ? "menu-item active" : "menu-item"
           }
+          onClick={onFechar}
         >
           <CalendarDays size={20} className="menu-icon" />
           Agenda
@@ -46,6 +54,7 @@ function Sidebar() {
           className={({ isActive }) =>
             isActive ? "menu-item active" : "menu-item"
           }
+          onClick={onFechar}
         >
           <Users size={20} className="menu-icon" />
           Pacientes
@@ -57,6 +66,7 @@ function Sidebar() {
             className={({ isActive }) =>
               isActive ? "menu-item active" : "menu-item"
             }
+            onClick={onFechar}
           >
             <Users2 size={20} className="menu-icon" />
             Usuários
@@ -68,6 +78,7 @@ function Sidebar() {
           className={({ isActive }) =>
             isActive ? "menu-item active" : "menu-item"
           }
+          onClick={onFechar}
         >
           <FileSpreadsheet size={20} className="menu-icon" />
           Relatórios

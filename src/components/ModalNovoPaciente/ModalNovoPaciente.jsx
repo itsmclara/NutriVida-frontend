@@ -229,7 +229,13 @@ function ModalNovoPaciente({
       );
 
       toast.erro(
+
+        error?.response?.data?.message ||
+
+        error?.response?.data ||
+
         "Erro ao salvar paciente"
+
       );
     }
   }

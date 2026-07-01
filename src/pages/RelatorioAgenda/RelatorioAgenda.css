@@ -1,0 +1,29 @@
+@import "../RelatorioPacientes/RelatorioPacientes.css";
+
+.relatorio-agenda-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.relatorio-agenda-table .col-data {
+  width: 15%;
+}
+
+.relatorio-agenda-table .col-nutri {
+  width: 28%;
+}
+
+.relatorio-agenda-table .col-status {
+  width: 17%;
+}
+
+.relatorio-agenda-table .col-ocupados {
+  width: 20%;
+  text-align: center;
+}
+
+.relatorio-agenda-table .col-livres {
+  width: 20%;
+  text-align: center;
+}

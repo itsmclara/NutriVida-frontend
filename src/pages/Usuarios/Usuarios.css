@@ -122,3 +122,58 @@
     0 0 1px rgba(12, 26, 75, 0.24),
     0 3px 8px -1px rgba(50, 50, 71, 0.05);
 }
+
+@media (max-width: 1024px) {
+  .usuarios-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .usuarios-header h1 {
+    font-size: 22px;
+  }
+
+  .usuarios-header p {
+    font-size: 14px;
+  }
+
+  .tabela-container {
+    overflow-x: auto;
+    padding: 16px;
+  }
+
+  .tabela {
+    min-width: 600px;
+  }
+
+  .filtros-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 16px;
+  }
+
+  .filtros-container > *:first-child {
+    width: 100%;
+  }
+
+  .filtros-container > *:not(:first-child) {
+    flex: 1;
+  }
+}
+
+@media (max-width: 640px) {
+  .usuarios-header button {
+    align-self: flex-start;
+  }
+
+  .filtros-container {
+    flex-direction: column;
+  }
+
+  .filtros-container > *:not(:first-child) {
+    flex: unset;
+    width: 100%;
+  }
+}

@@ -1,16 +1,116 @@
-# React + Vite
+<h1>
+  <img src="src/assets/imagem-logo-vertical.png" width="50" valign="middle">
+  &nbsp;NutriVida
+</h1>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Sistema web desenvolvido para auxiliar na gestão de clínicas de nutrição, permitindo o gerenciamento de pacientes, consultas, prontuários, agendas e usuários de forma prática e organizada.
 
-Currently, two official plugins are available:
+Este projeto foi desenvolvido como Trabalho de Curso (TC) do curso de Análise e Desenvolvimento de Sistemas.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## ✨ Funcionalidades
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 👤 Pacientes
+- Cadastro de pacientes
+- Edição de informações
+- Busca por nome ou CPF
+- Visualização de prontuário
+- Histórico de consultas
+- Ocultação e restauração de consultas
 
-## Expanding the ESLint configuration
+### 📅 Agenda
+- Abertura de agendas
+- Agendamento de consultas
+- Controle de horários disponíveis
+- Reabertura de agendas
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 🩺 Consultas
+- Registro de consultas
+- Avaliação nutricional
+- Cálculo automático do IMC
+- Plano alimentar
+- Observações clínicas
+- Edição de consultas
+- Geração de PDF
+
+### 👥 Usuários
+- Cadastro de usuários
+- Edição de usuários
+- Controle de perfis
+- Ativação e desativação de contas
+- Edição do próprio perfil
+
+### 📊 Relatórios
+- Visualização de relatórios do sistema
+
+---
+
+## 👨‍⚕️ Perfis de acesso
+
+- Administrador
+- Nutricionista
+- Secretária
+
+Cada perfil possui permissões específicas dentro do sistema.
+
+---
+
+## 🛠️ Tecnologias utilizadas
+
+- React
+- Vite
+- React Router DOM
+- Axios
+- Lucide React
+- React PDF
+- CSS
+
+---
+
+## 📂 Estrutura do projeto
+
+```text
+src/
+├── assets/
+├── components/
+├── pages/
+├── services/
+├── utils/
+├── App.jsx
+└── main.jsx
+```
+
+---
+
+## 🚀 Como executar o projeto
+
+### Clone o repositório
+
+```bash
+git clone https://github.com/itsmclara/NutriVida-frontend.git
+```
+
+### Entre na pasta
+
+```bash
+cd NutriVida-frontend
+```
+
+### Instale as dependências
+
+```bash
+npm install
+```
+
+### Execute o projeto
+
+```bash
+npm run dev
+```
+
+---
+
+## 📄 Licença
+
+Projeto desenvolvido exclusivamente para fins acadêmicos como Trabalho de Curso (TC) do curso de Análise e Desenvolvimento de Sistemas.

@@ -1,11 +1,12 @@
 import "./Header.css";
 import { formatarNomeNutri } from "../../utils/formatadores";
 import { useState } from "react";
+import { Menu } from "lucide-react";
 import ModalMeuPerfil from "../ModalMeuPerfil/ModalMeuPerfil";
 
-function Header() {
+function Header({ onAbrirMenu }) {
 
-  const [modalPerfilAberto, setModalPerfilAberto] = useState(false)
+  const [modalPerfilAberto, setModalPerfilAberto] = useState(false);
 
   const usuario = JSON.parse(sessionStorage.getItem("usuario")) || {};
 
@@ -20,6 +21,10 @@ function Header() {
 
   return (
     <div className="header">
+
+      <button className="header-menu-btn" onClick={onAbrirMenu}>
+        <Menu size={22} />
+      </button>
 
       <div
         className="header-user"

@@ -204,7 +204,7 @@ function PdfConsulta({
               </Text>
 
               <Text style={styles.value}>
-                {paciente.prontuario?.numeroProntuario || "—"}
+                {paciente.prontuario?.numero || "—"}
               </Text>
             </Text>
 

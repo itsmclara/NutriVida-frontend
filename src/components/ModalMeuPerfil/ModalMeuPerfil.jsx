@@ -214,7 +214,13 @@ function ModalMeuPerfil({
       );
 
       toast.erro(
+
+        error?.response?.data?.message ||
+
+        error?.response?.data ||
+
         "Erro ao atualizar perfil"
+
       );
     }
   }

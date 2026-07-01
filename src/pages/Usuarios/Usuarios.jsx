@@ -10,6 +10,7 @@ import ModalEditarUsuario from "../../components/ModalEditarUsuario/ModalEditarU
 import InputBusca from "../../components/InputBusca/InputBusca";
 import FiltroSelect from "../../components/FiltroSelect/FiltroSelect";
 import Button from "../../components/Button/Button";
+import { formatarTexto } from "../../utils/formatadores";
 
 function Usuarios() {
 
@@ -23,30 +24,57 @@ function Usuarios() {
 
   const [perfil, setPerfil] = useState("");
   const [status, setStatus] = useState("");
+  const [busca, setBusca] = useState("");
 
-  useEffect(() => {
   async function carregarInicial() {
+
     try {
+
       const res = await api.get("/usuarios", {
         params: { limit: 5 }
       });
-      setUsuarios(Array.isArray(res.data) ? res.data : []);
+
+      setUsuarios(
+        Array.isArray(res.data)
+          ? res.data
+          : []
+      );
+
     } catch (error) {
-      console.error("Erro ao carregar usuários:", error);
+
+      console.error(
+        "Erro ao carregar usuários:",
+        error
+      );
+
     }
+
   }
 
-  carregarInicial();
-}, []);
+  useEffect(() => {
+
+    carregarInicial();
+
+  }, []);
 
   async function buscarUsuarios(termo, perfilParam = perfil, statusParam = status) {
+
+    if (
+      !termo &&
+      !perfilParam &&
+      !statusParam
+    ) {
+
+      await carregarInicial();
+
+      return;
+    }
+
     try {
       const params = {};
 
       if (termo) {
         params.busca = termo;
-      } else {
-        params.limit = 5;
       }
 
       if (perfilParam) params.perfil = perfilParam;
@@ -82,17 +110,35 @@ function Usuarios() {
         <InputBusca
           label="Buscar"
           placeholder="Buscar usuário por nome ou e-mail"
-          onBuscar={(termo) =>
-            buscarUsuarios(termo)
-          }
+          onBuscar={(termo) => {
+
+            setBusca(termo);
+
+            buscarUsuarios(
+              termo,
+              perfil,
+              status
+            );
+
+          }}
         />
 
         <FiltroSelect
           label="Perfil"
           valor={perfil}
           onChange={(valor) => {
+
             setPerfil(valor);
+
+            if (!valor && !status) {
+
+              carregarInicial();
+
+              return;
+            }
+
             buscarUsuarios(null, valor, status);
+
           }}
           opcoes={["ADMINISTRADOR", "NUTRICIONISTA", "SECRETARIA"]}
         />
@@ -101,8 +147,18 @@ function Usuarios() {
           label="Status"
           valor={status}
           onChange={(valor) => {
+
             setStatus(valor);
+
+            if (!perfil && !valor) {
+
+              carregarInicial();
+
+              return;
+            }
+
             buscarUsuarios(null, perfil, valor);
+
           }}
           opcoes={["ATIVO", "INATIVO"]}
         />
@@ -133,7 +189,7 @@ function Usuarios() {
 
                   <td>
                     <span className={`perfil ${u.perfil?.toLowerCase() || ""}`}>
-                      {u.perfil}
+                      {formatarTexto(u.perfil)}
                     </span>
                   </td>
 
@@ -183,7 +239,15 @@ function Usuarios() {
       <ModalNovoUsuario
         aberto={modalAberto}
         onClose={() => setModalAberto(false)}
-        onUsuarioCriado={() => buscarUsuarios()}
+        onUsuarioCriado={() => {
+
+          buscarUsuarios(
+            busca,
+            perfil,
+            status
+          );
+
+        }}
       />
 
       <ModalDetalhesUsuario
@@ -199,8 +263,15 @@ function Usuarios() {
       <ModalEditarUsuario
         aberto={modalEditarAberto}
         onClose={() => {
+
           setModalEditarAberto(false);
-          buscarUsuarios();
+
+          buscarUsuarios(
+            busca,
+            perfil,
+            status
+          );
+
         }}
         usuario={usuarioSelecionado}
       />

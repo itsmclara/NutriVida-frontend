@@ -15,3 +15,10 @@
   font-size: 16px;
 }
 
+.historico-acoes {
+  display: flex;
+  justify-content: flex-end;
+
+  padding: 0 24px;
+  margin-top: 12px;
+}

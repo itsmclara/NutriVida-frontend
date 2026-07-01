@@ -451,12 +451,18 @@ function ModalRegistrarConsulta({
     } catch (error) {
 
       console.error(
+        "Erro ao registrar consulta:",
         error
       );
 
       toast.erro(
+
         error?.response?.data?.message ||
+
+        error?.response?.data ||
+
         "Erro ao registrar consulta"
+
       );
     }
   }

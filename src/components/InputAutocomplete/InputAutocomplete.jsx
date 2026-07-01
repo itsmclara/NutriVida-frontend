@@ -4,6 +4,8 @@ import {
   useRef
 } from "react";
 
+import { createPortal } from "react-dom";
+
 import { Search } from "lucide-react";
 
 import "./InputAutocomplete.css";
@@ -24,6 +26,15 @@ function InputAutocomplete({
     focado,
     setFocado
   ] = useState(false);
+
+  const [
+    posicao,
+    setPosicao
+  ] = useState({
+    top: 0,
+    left: 0,
+    width: 0
+  });
 
   const containerRef =
     useRef(null);
@@ -101,25 +112,52 @@ function InputAutocomplete({
           type="text"
           placeholder={placeholder}
           value={value}
-          onFocus={() =>
-            setFocado(true)
-          }
+          onFocus={() => {
+
+            if (containerRef.current) {
+
+              const rect =
+                containerRef.current.getBoundingClientRect();
+
+              setPosicao({
+                top:
+                  rect.bottom +
+                  window.scrollY +
+                  6,
+
+                left:
+                  rect.left +
+                  window.scrollX,
+
+                width: rect.width
+              });
+            }
+
+            setFocado(true);
+          }}
           onChange={onChange}
           className="autocomplete-input"
         />
 
       </div>
 
-      {aberto && (
+      {aberto && createPortal(
 
-        <div className="autocomplete-dropdown">
+        <div
+          className="autocomplete-dropdown"
+          style={{
+            top: posicao.top,
+            left: posicao.left,
+            width: posicao.width
+          }}
+        >
 
           {resultados.map((item) => (
 
             <div
               key={item.id}
               className="autocomplete-item"
-              onClick={() => {
+              onMouseDown={() => {
 
                 onSelecionar(item);
 
@@ -133,8 +171,9 @@ function InputAutocomplete({
 
           ))}
 
-        </div>
+        </div>,
 
+        document.body
       )}
 
       {error && (

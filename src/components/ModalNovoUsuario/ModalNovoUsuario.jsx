@@ -219,7 +219,13 @@ function ModalNovoUsuario({
       );
 
       toast.erro(
+
+        error?.response?.data?.message ||
+
+        error?.response?.data ||
+
         "Erro ao cadastrar usuário"
+
       );
     }
   }

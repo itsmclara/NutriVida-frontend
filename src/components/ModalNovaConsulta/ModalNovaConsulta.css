@@ -26,3 +26,19 @@
 
   flex-shrink: 0;
 }
+
+.autocomplete-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.autocomplete-info strong {
+  font-size: 16px;
+  color: #1F2937;
+}
+
+.autocomplete-info span {
+  font-size: 14px;
+  color: #6B7280;
+}

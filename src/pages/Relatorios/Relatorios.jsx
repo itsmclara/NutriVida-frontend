@@ -45,7 +45,7 @@ function Relatorios() {
 
       icon: <CalendarDays size={22} />,
 
-      rota: "/relatorios/agenda-dia"
+      rota: "/relatorios/agenda"
     },
 
     {

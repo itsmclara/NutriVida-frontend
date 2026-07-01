@@ -12,17 +12,37 @@
   box-sizing: border-box;
 }
 
+.sidebar-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
 .sidebar-logo {
   display: flex;
   justify-content: center;
   align-items: center;
-
-  margin-bottom: 30px;
 }
 
 .sidebar-logo img {
-  width: 190px; 
+  width: 160px;
   height: auto;
+}
+
+.sidebar-fechar {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #425466;
+  padding: 4px;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.sidebar-fechar:hover {
+  background: #f3f4f6;
 }
 
 .sidebar-menu {
@@ -93,4 +113,15 @@
 .logout-btn:hover {
   background: #ffcccc;
   transform: translateX(2px);
+}
+
+/* TABLET E CELULAR */
+@media (max-width: 1024px) {
+  .sidebar-fechar {
+    display: flex;
+  }
+
+  .sidebar-logo img {
+    width: 130px;
+  }
 }
